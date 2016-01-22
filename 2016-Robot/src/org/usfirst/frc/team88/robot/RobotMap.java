@@ -11,11 +11,11 @@ public class RobotMap {
 	// encoders on masters
 	public static int leftMotorController1=1;
 	public static int leftMotorController2=2;
-	// public static int leftMotorController3=3;
+	public static int leftMotorController3=3;
 
 	public static int rightMotorController1=4;
 	public static int rightMotorController2=5;
-	// public static int rightMotorController3=6;
+	public static int rightMotorController3=6;
 
 // Intake
 	public static int frontRollerMotorController = 7;
