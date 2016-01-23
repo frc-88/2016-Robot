@@ -29,9 +29,18 @@ public class Drive extends Subsystem {
 		rTalon3 = new CANTalon(RobotMap.rightMotorController3);
 
 	}
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	protected void initDefaultCommand() {
+		
+		
+	}
+	public void DriveSimple(double leftDirection, double rightDirection){
+		lTalon1.set(leftDirection);
+		lTalon2.set(leftDirection);
+		lTalon3.set(leftDirection);
+		
+		rTalon1.set(rightDirection);
+		rTalon2.set(rightDirection);
+		rTalon3.set(rightDirection);
+	}
 }
 
