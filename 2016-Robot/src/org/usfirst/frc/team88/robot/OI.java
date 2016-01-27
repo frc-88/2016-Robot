@@ -1,38 +1,41 @@
 package org.usfirst.frc.team88.robot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team88.robot.commands.ExampleCommand;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
+	private static final int LEFT_HORIZ_AXIS = 0;
+    private static final int LEFT_VERT_AXIS = 1;
+    private static final int RIGHT_HORIZ_AXIS = 4;
+    private static final int RIGHT_VERT_AXIS = 5;
+    private static final int LEFT_Z_AXIS = 2;
+    private static final int RIGHT_Z_AXIS =3;
     
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
+    private Joystick driverController = new Joystick(0);
     
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
+    public double getDriverRightVerticalAxis() {
+        return driverController.getRawAxis(RIGHT_VERT_AXIS);
+    }
     
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
+    public double getDriverRightHorizontalAxis() {
+        return driverController.getRawAxis(RIGHT_HORIZ_AXIS);
+    }
     
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
+    public double getDriverLeftVerticalAxis() {
+        return -driverController.getRawAxis(LEFT_VERT_AXIS);
+    }     
+    public double getDriverLeftHorizontalAxis() {
+        return driverController.getRawAxis(LEFT_HORIZ_AXIS);
+    }
+    public double getDriverLeftZAxis() {
+        return driverController.getRawAxis(LEFT_Z_AXIS);
+    }
+    public double getDriverRightZAxis() {
+        return driverController.getRawAxis(RIGHT_Z_AXIS);
+    }
+   
 }
 
