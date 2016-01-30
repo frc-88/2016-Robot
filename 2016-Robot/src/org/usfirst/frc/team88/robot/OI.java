@@ -17,7 +17,7 @@ public class OI {
     private Joystick driverController = new Joystick(0);
     
     public double getDriverRightVerticalAxis() {
-        return driverController.getRawAxis(RIGHT_VERT_AXIS);
+        return -driverController.getRawAxis(RIGHT_VERT_AXIS);
     }
     
     public double getDriverRightHorizontalAxis() {
