@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drive extends Subsystem {
     
-	private final CANTalon lTalon1, lTalon2, rTalon1, rTalon2;
+	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -19,12 +19,12 @@ public class Drive extends Subsystem {
 	public Drive(){
 		
 		// left side drive controllers
-		lTalon1 = new CANTalon(RobotMap.driveLeftMaster);
-		lTalon2 = new CANTalon(RobotMap.driveLeftSlave);
+		lTalonMaster = new CANTalon(RobotMap.driveLeftMaster);
+		lTalonSlave = new CANTalon(RobotMap.driveLeftSlave);
 		
 		// right side drive controllers
-		rTalon1 = new CANTalon(RobotMap.driveRightMaster);
-		rTalon2 = new CANTalon(RobotMap.driveRightSlave);
+		rTalonMaster = new CANTalon(RobotMap.driveRightMaster);
+		rTalonSlave = new CANTalon(RobotMap.driveRightSlave);
 
 	}
 	protected void initDefaultCommand() {
@@ -32,11 +32,11 @@ public class Drive extends Subsystem {
 		
 	}
 	public void DriveSimple(double leftDirection, double rightDirection){
-		lTalon1.set(leftDirection);
-		lTalon2.set(leftDirection);
+		lTalonMaster.set(leftDirection);
+		lTalonSlave.set(leftDirection);
 		
-		rTalon1.set(rightDirection);
-		rTalon2.set(rightDirection);
+		rTalonMaster.set(rightDirection);
+		rTalonSlave.set(rightDirection);
 	}
 }
 
