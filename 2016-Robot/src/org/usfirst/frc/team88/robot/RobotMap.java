@@ -9,13 +9,11 @@ public class RobotMap {
 
 // Drive
 	// encoders on masters
-	public static int leftMotorController1=1;
-	public static int leftMotorController2=2;
-	public static int leftMotorController3=3;
+	public static int driveLeftMaster=1;
+	public static int driveLeftSlave=2;
 
-	public static int rightMotorController1=4;
-	public static int rightMotorController2=5;
-	public static int rightMotorController3=6;
+	public static int driveRightMaster=4;
+	public static int driveRightSlave=5;
 
 // Intake
 	public static int frontRollerMotorController = 7;
