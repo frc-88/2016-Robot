@@ -16,12 +16,13 @@ public class Drive extends Subsystem {
     
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 	
-	private final static double MAX_SPEED = 500;
+	private final static double MAX_SPEED = 600;
 	private final static double RIGHT_P = 0.75;
 	private final static double LEFT_P = 0.75;
 	private final static double I = 0.0; 
 	private final static double D = 0.0;
 	private final static double DEAD_ZONE = 0.2;
+	private double difference = 0.0;
 			
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -53,7 +54,7 @@ public class Drive extends Subsystem {
 
 	}
 	
-	private void updateSmartDashboard() {
+	private void updateSmartDashboard(double diff) {
 		SmartDashboard.putNumber("Left Encoder: ", lTalonMaster.getPosition());
 		SmartDashboard.putNumber("Left Master Voltage: ", lTalonMaster.getOutputVoltage());
 		SmartDashboard.putNumber("Left Master Current: ", lTalonMaster.getOutputCurrent());
@@ -67,6 +68,9 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Right Master Speed: ", -rTalonMaster.getSpeed());
 		SmartDashboard.putNumber("Right Slave Voltage: ", rTalonSlave.getOutputVoltage());
 		SmartDashboard.putNumber("Right Slave Current: ", rTalonSlave.getOutputCurrent());
+		
+		//Positive distance means favoring left side.  negative means favoring right side.
+		SmartDashboard.putNumber("Difference in Speed: ", diff);
 	}
 	
 	protected void initDefaultCommand() {
@@ -87,7 +91,8 @@ public class Drive extends Subsystem {
 		lTalonMaster.set(-leftDirection * MAX_SPEED);
 		rTalonMaster.set(rightDirection * MAX_SPEED);
 		
-		updateSmartDashboard();
+		difference = (Math.abs(lTalonMaster.getSpeed())-Math.abs(rTalonMaster.getSpeed()));
+		updateSmartDashboard(difference);
 	}
 	
 	public void DriveSimple(double leftDirection, double rightDirection){
