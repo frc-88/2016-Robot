@@ -109,5 +109,13 @@ public class Drive extends Subsystem {
 		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Position);
 		rTalonMaster.set(0);
 	}
+	
+	public void unpark() {
+		lTalonMaster.setPosition(0);
+		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+
+		rTalonMaster.setPosition(0);
+		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+	}
 }
 
