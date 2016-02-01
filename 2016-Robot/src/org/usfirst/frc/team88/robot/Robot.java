@@ -1,12 +1,11 @@
-
 package org.usfirst.frc.team88.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team88.robot.commands.ExampleCommand;
-import org.usfirst.frc.team88.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team88.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,8 +18,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static Drive drive;
+	public static CameraServer server;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -31,8 +31,14 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		drive = new Drive();
+		
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        server.startAutomaticCapture("cam0");
+		
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new ExampleCommand());
+//        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
@@ -85,10 +91,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
