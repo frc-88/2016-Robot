@@ -22,10 +22,14 @@ public class OI {
     private Joystick driverController = new Joystick(0);
     private Button driverButtonA = new JoystickButton(driverController, 1);
     private Button driverButtonB = new JoystickButton(driverController, 2);
+    private Button driverButtonX = new JoystickButton(driverController, 3);
+    private Button driverButtonY = new JoystickButton(driverController, 4);
+    private Button driverButtonLeftBumper = new JoystickButton(driverController, 5);
+    private Button driverButtonRightBumper = new JoystickButton(driverController, 6);
 
     public OI () {
-        driverButtonA.whenPressed(new DrivePark());
-        driverButtonB.whenPressed(new DriveWithControllerClosed());
+        driverButtonLeftBumper.whenPressed(new DrivePark());
+        driverButtonRightBumper.whenPressed(new DriveWithControllerClosed());
     }
      
     public double getDriverRightVerticalAxis() {

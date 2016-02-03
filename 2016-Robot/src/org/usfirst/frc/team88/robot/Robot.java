@@ -30,9 +30,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
 		drive = new Drive();
-		
+
+		oi = new OI();
+
         server = CameraServer.getInstance();
         server.setQuality(50);
         server.startAutomaticCapture("cam0");

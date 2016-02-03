@@ -19,7 +19,7 @@ public class Drive extends Subsystem {
 	private final static double MAX_SPEED = 600;
 	private final static double RIGHT_P = 0.75;
 	private final static double LEFT_P = 0.75;
-	private final static double I = 0.0; 
+	private final static double I = 0.002; 
 	private final static double D = 0.0;
 	private final static double DEAD_ZONE = 0.2;
 	private double difference = 0.0;
@@ -32,6 +32,7 @@ public class Drive extends Subsystem {
 		// left side drive controllers
 		lTalonMaster = new CANTalon(RobotMap.driveLeftMaster);
 		lTalonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+	    lTalonMaster.reverseSensor(true);
 		//lTalonMaster.reverseOutput(true);
 		lTalonMaster.setPosition(0);
 		lTalonMaster.setPID(LEFT_P, I, D);
@@ -44,6 +45,8 @@ public class Drive extends Subsystem {
 		// right side drive controllers
 		rTalonMaster = new CANTalon(RobotMap.driveRightMaster);
 		rTalonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+	    rTalonMaster.reverseSensor(true);
+	    //rTalonMaster.reverseOutput(true);
 		rTalonMaster.setPosition(0);
 		rTalonMaster.setPID(RIGHT_P, I, D);
 		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
@@ -112,9 +115,11 @@ public class Drive extends Subsystem {
 	
 	public void unpark() {
 		lTalonMaster.setPosition(0);
+		lTalonMaster.setPID(LEFT_P, I, D);
 		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
 
 		rTalonMaster.setPosition(0);
+		rTalonMaster.setPID(RIGHT_P, I, D);
 		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
 	}
 }
