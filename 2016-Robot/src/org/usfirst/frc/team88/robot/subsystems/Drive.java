@@ -17,10 +17,10 @@ public class Drive extends Subsystem {
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 	
 	private final static double MAX_SPEED = 600;
-	private final static double RIGHT_P = 0.75;
-	private final static double LEFT_P = 0.75;
-	private final static double I = 0.002; 
-	private final static double D = 0.0;
+	private final static double RIGHT_P = 1.5;
+	private final static double LEFT_P = 1.5;
+	private final static double I = 0.01; 
+	private final static double D = 0.02;
 	private final static double DEAD_ZONE = 0.2;
 	private double difference = 0.0;
 			
