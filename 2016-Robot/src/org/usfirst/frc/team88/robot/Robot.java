@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
+import org.usfirst.frc.team88.robot.subsystems.Intake;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,6 +22,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static Drive drive;
+	public static Intake intake;
 	public static CameraServer server;
 
     Command autonomousCommand;
@@ -31,7 +34,8 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		drive = new Drive();
-
+		intake = new Intake();
+		
 		oi = new OI();
 
         server = CameraServer.getInstance();

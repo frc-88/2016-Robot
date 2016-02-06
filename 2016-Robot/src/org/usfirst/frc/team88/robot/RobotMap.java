@@ -16,12 +16,14 @@ public class RobotMap {
 	public static int driveRightSlave=5;
 
 // Intake
-	public static int frontRollerMotorController = 7;
-	public static int innerRollerMotorController = 8;
+	public static int intakeMotor = 6;
+	public static int shooterMotor = 8;
     // light sensor switch to known when boulder is in the nest
+	public static int nestSensor = 0;
+
 	
 // Arms
-	public static int armMotorController = 10;
+	public static int armMotorController = 7;
 	// encoder to know angle of arms
 
 // HDS - Hook Delivery System
