@@ -2,9 +2,12 @@ package org.usfirst.frc.team88.robot;
 
 import org.usfirst.frc.team88.robot.commands.DrivePark;
 import org.usfirst.frc.team88.robot.commands.DriveWithControllerClosed;
+import org.usfirst.frc.team88.robot.commands.FireShooter;
 import org.usfirst.frc.team88.robot.commands.IntakeIn;
 import org.usfirst.frc.team88.robot.commands.IntakeOut;
 import org.usfirst.frc.team88.robot.commands.IntakeStop;
+import org.usfirst.frc.team88.robot.commands.PrepareShooter;
+import org.usfirst.frc.team88.robot.commands.StopShooter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -66,6 +69,10 @@ public class OI {
         operatorButtonA.whenReleased(new IntakeStop());
         operatorButtonB.whenPressed(new IntakeOut());
         operatorButtonB.whenReleased(new IntakeStop());
+        operatorButtonX.whenPressed(new PrepareShooter());
+        operatorButtonY.whenPressed(new StopShooter());
+        operatorButtonRightBumper.whenPressed(new FireShooter());
+        operatorButtonRightBumper.whenReleased(new StopShooter());
     }
      
     // driver joysticks

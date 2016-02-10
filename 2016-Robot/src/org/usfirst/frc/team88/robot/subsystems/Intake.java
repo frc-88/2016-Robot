@@ -16,6 +16,7 @@ public class Intake extends Subsystem {
 	private final static double D = 0.0;
 	private final static double LOADED_DISTANCE = 6.0;
 	private final static double SHOOTER_SPEED = 10.0;
+	private final static double OPTIMAL_SPEED = 10.0;
 	
 	public final static double INTAKE_IN = 0.5;
 	public final static double INTAKE_OUT = -0.5;
@@ -24,6 +25,8 @@ public class Intake extends Subsystem {
 	private final CANTalon shooterTalon;
 
 	private final AnalogInput nestSensor;
+	
+	private boolean ready;
 
 	public Intake (){
 		intakeTalon = new CANTalon(RobotMap.intakeMotor);
@@ -48,6 +51,16 @@ public class Intake extends Subsystem {
 
 	public void stopShooter() {
 		shooterTalon.set(0.0);
+	}
+	
+	public boolean isShooterReady(){
+		if(shooterTalon.getSpeed() == OPTIMAL_SPEED)
+			ready = true;
+		
+		else
+			ready = false;
+		
+		return ready;
 	}
 
 	public boolean isBoulderInNest() {
