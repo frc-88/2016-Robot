@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveArmsWithController extends Command {
 
     public MoveArmsWithController() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.arms);
     }
 
@@ -21,6 +19,21 @@ public class MoveArmsWithController extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double speed;
+    	
+    	if(Robot.oi.applyDeadZone(Robot.oi.getOperatorLeftZAxis()) > 0.0){
+    		speed = Robot.oi.getOperatorLeftZAxis();
+    		Robot.oi.applyDeadZone(speed);
+    	}
+    	else if(Robot.oi.applyDeadZone(Robot.oi.getOperatorRightZAxis()) > 0){
+    		speed = -Robot.oi.getOperatorRightZAxis();
+    		Robot.oi.applyDeadZone(speed);
+    	}
+    	else{
+    		speed = 0.0;
+    	}
+    	
+    	Robot.arms.move(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
