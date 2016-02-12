@@ -32,7 +32,9 @@ public class RobotMap {
 	// switch to determine if hook is on bar, limit switch? 
 	// encoder on angle motor
 	
-// Ladder
+// Climber
+    public static final int climberSolenoidIn = 0;
+    public static final int climberSolenoidOut = 1;
 	// some mechanism to release clock springs, solenoid?
 	// or, alternatively, one motor to run winch
 	

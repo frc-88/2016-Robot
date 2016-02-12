@@ -1,5 +1,8 @@
 package org.usfirst.frc.team88.robot;
 
+import org.usfirst.frc.team88.robot.commands.ClimberDisable;
+import org.usfirst.frc.team88.robot.commands.ClimberEnable;
+import org.usfirst.frc.team88.robot.commands.ClimberFire;
 import org.usfirst.frc.team88.robot.commands.DrivePark;
 import org.usfirst.frc.team88.robot.commands.DriveWithControllerClosed;
 import org.usfirst.frc.team88.robot.commands.FireShooter;
@@ -35,6 +38,12 @@ public class OI {
     private Button driverButtonY = new JoystickButton(driverController, 4);
     private Button driverButtonLeftBumper = new JoystickButton(driverController, 5);
     private Button driverButtonRightBumper = new JoystickButton(driverController, 6);
+    private Button driverButtonBack = new JoystickButton(driverController, 7);
+    private Button driverButtonStart = new JoystickButton(driverController, 8);
+    private Button driverButtonLeftAxisPress = new JoystickButton(driverController, 9);
+    private Button driverButtonRightAxisPress = new JoystickButton(driverController, 10);
+
+
     
     //operator controller setup
     private Joystick operatorController = new Joystick(1);
@@ -44,6 +53,10 @@ public class OI {
     private Button operatorButtonY = new JoystickButton(operatorController, 4);
     private Button operatorButtonLeftBumper = new JoystickButton(operatorController, 5);
     private Button operatorButtonRightBumper = new JoystickButton(operatorController, 6);
+    private Button operatorButtonBack = new JoystickButton(operatorController, 7);
+    private Button operatorButtonStart = new JoystickButton(operatorController, 8);
+    private Button operatorButtonLeftAxisPress = new JoystickButton(operatorController, 9);
+    private Button operatorButtonRightAxisPress = new JoystickButton(operatorController, 10);
     
     //// TRIGGERING COMMANDS WITH BUTTONS
     // Once you have a button, it's trivial to bind it to a button in one of
@@ -64,6 +77,8 @@ public class OI {
     public OI () {
         driverButtonLeftBumper.whenPressed(new DrivePark());
         driverButtonRightBumper.whenPressed(new DriveWithControllerClosed());
+        driverButtonStart.whenPressed(new ClimberEnable());
+        driverButtonStart.whenPressed(new ClimberDisable());
 
         operatorButtonA.whenPressed(new IntakeIn());
         operatorButtonA.whenReleased(new IntakeStop());
@@ -73,6 +88,7 @@ public class OI {
         operatorButtonY.whenPressed(new StopShooter());
         operatorButtonRightBumper.whenPressed(new FireShooter());
         operatorButtonRightBumper.whenReleased(new StopShooter());
+        operatorButtonLeftBumper.whenPressed(new ClimberFire());
     }
      
     // driver joysticks
