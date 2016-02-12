@@ -59,10 +59,8 @@ public class MotionProfile {
 		}
 	}
 	
-	public void startMotionProfile(CANTalon talon){
-		//The example just had a boolean turning true, I didn't see it connected to anything, so
-		//I'll have to figure this out
-		
+	public void fireMotionProfile(CANTalon talon){
+		talon.set(CANTalon.SetValueMotionProfile.valueOf(1));
 	}
 
 }
