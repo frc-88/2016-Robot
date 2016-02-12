@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
+import org.usfirst.frc.team88.robot.subsystems.HookDeliverySystem;
 import org.usfirst.frc.team88.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Arms arms;
 	public static Climber climber;
+	public static HookDeliverySystem HDS;
 	public static CameraServer server;
 
     Command autonomousCommand;
@@ -42,6 +44,7 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		arms = new Arms();
 		climber = new Climber();
+		HDS = new HookDeliverySystem();
 		
 		oi = new OI();
 
