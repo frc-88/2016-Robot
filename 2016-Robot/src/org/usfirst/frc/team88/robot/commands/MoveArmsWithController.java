@@ -19,20 +19,9 @@ public class MoveArmsWithController extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed;
+    	double speed = Robot.oi.getOperatorLeftVerticalAxis();
     	
-    	if(Robot.oi.applyDeadZone(Robot.oi.getOperatorLeftZAxis()) > 0.0){
-    		speed = Robot.oi.getOperatorLeftZAxis();
-    		Robot.oi.applyDeadZone(speed);
-    	}
-    	else if(Robot.oi.applyDeadZone(Robot.oi.getOperatorRightZAxis()) > 0){
-    		speed = -Robot.oi.getOperatorRightZAxis();
-    		Robot.oi.applyDeadZone(speed);
-    	}
-    	else{
-    		speed = 0.0;
-    	}
-    	
+    	speed = Robot.oi.applyDeadZone(speed);
     	Robot.arms.move(speed);
     }
 
