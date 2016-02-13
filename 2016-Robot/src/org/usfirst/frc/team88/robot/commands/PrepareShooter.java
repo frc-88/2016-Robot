@@ -9,17 +9,25 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PrepareShooter extends Command {
 
+	
+	
     public PrepareShooter() {
     	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.startShooter();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(!Robot.intake.isBoulderInNest()){
+    		
+    	}
+    	else{
+    	Robot.intake.startShooter();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
