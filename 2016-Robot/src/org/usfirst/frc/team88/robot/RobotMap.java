@@ -27,12 +27,14 @@ public class RobotMap {
 	// encoder to know angle of arms
 
 // HDS - Hook Delivery System
-	public static int hdsElevatorMotorController = 12;
-	public static int hdsAngleMotorController = 13;
+	public static int hdsElevatorMotorController = 9;
+	public static int hdsAngleMotorController = 10;
 	// switch to determine if hook is on bar, limit switch? 
 	// encoder on angle motor
 	
-// Ladder
+// Climber
+    public static final int climberSolenoidIn = 0;
+    public static final int climberSolenoidOut = 1;
 	// some mechanism to release clock springs, solenoid?
 	// or, alternatively, one motor to run winch
 	
