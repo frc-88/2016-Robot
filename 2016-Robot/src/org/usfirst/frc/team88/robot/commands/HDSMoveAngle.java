@@ -3,8 +3,6 @@ package org.usfirst.frc.team88.robot.commands;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team88.robot.Robot;
-import org.usfirst.frc.team88.robot.RobotMap;
-import org.usfirst.frc.team88.robot.OI;
 
 /**
  *

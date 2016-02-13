@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PrepareShooter extends Command {
 
-	
+	private boolean isShooterStarted = false;
 	
     public PrepareShooter() {
     	requires(Robot.intake);
@@ -25,8 +25,9 @@ public class PrepareShooter extends Command {
     	if(!Robot.intake.isBoulderInNest()){
     		
     	}
-    	else{
+    	else if(!isShooterStarted){
     	Robot.intake.startShooter();
+    	isShooterStarted = true;
     	}
     }
 
