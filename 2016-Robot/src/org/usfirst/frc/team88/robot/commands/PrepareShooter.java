@@ -57,6 +57,8 @@ public class PrepareShooter extends Command {
     protected boolean isFinished() {
         return done;
     }
+    
+    
 
     // Called once after isFinished returns true
     protected void end() {

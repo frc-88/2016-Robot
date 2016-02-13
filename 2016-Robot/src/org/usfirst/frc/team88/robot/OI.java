@@ -116,7 +116,11 @@ public class OI {
         return driverController.getRawAxis(RIGHT_Z_AXIS);
     }
     
-    // operator joysticks
+    public double getDriverZAxis() {
+        return driverController.getRawAxis(LEFT_Z_AXIS) - driverController.getRawAxis(RIGHT_Z_AXIS);
+    }
+   
+ // operator joysticks
     public double getOperatorRightVerticalAxis() {
         return operatorController.getRawAxis(RIGHT_VERT_AXIS);
     }
@@ -139,6 +143,10 @@ public class OI {
     
     public double getOperatorRightZAxis() {
         return operatorController.getRawAxis(RIGHT_Z_AXIS);
+    }
+   
+    public double getOperatorZAxis() {
+        return operatorController.getRawAxis(LEFT_Z_AXIS) - operatorController.getRawAxis(RIGHT_Z_AXIS);
     }
    
     // Utilities

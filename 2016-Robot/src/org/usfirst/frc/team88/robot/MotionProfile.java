@@ -1,6 +1,7 @@
 package org.usfirst.frc.team88.robot;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Notifier;
 
 public class MotionProfile {
@@ -60,7 +61,8 @@ public class MotionProfile {
 	}
 	
 	public void fireMotionProfile(CANTalon talon){
-		talon.set(CANTalon.SetValueMotionProfile.valueOf(1));
+		talon.changeControlMode(TalonControlMode.MotionProfile);
+	//	talon.set(CANTalon.SetValueMotionProfile.Enable);
 	}
 
 }
