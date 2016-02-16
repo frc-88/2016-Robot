@@ -28,10 +28,17 @@ public class HookDeliverySystem extends Subsystem {
 	
 	public void moveAngle(double speed){
 		angleTalon.set(speed);
+
+		SmartDashboard.putNumber("Angle Voltage: ", angleTalon.getOutputVoltage());
+		SmartDashboard.putNumber("Angle Current: ", angleTalon.getOutputCurrent());
 	}
 	
 	public void moveElevator(double speed){
 		elevatorTalon.set(speed);
+	
+		SmartDashboard.putNumber("Elevator Encoder: ", elevatorTalon.getEncPosition());
+		SmartDashboard.putNumber("Elevator Voltage: ", elevatorTalon.getOutputVoltage());
+		SmartDashboard.putNumber("Elevator Current: ", elevatorTalon.getOutputCurrent());
 	}
 
     public void initDefaultCommand() {
