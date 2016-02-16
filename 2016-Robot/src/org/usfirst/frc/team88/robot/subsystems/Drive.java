@@ -2,7 +2,6 @@ package org.usfirst.frc.team88.robot.subsystems;
 
 import org.usfirst.frc.team88.robot.RobotMap;
 import org.usfirst.frc.team88.robot.commands.DriveWithControllerClosed;
-import org.usfirst.frc.team88.robot.commands.DriveWithControllerSimple;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
