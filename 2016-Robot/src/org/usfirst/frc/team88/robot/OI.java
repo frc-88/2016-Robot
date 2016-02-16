@@ -81,9 +81,8 @@ public class OI {
 		operatorButtonB.whenPressed(new IntakeOut());
 		operatorButtonB.whenReleased(new IntakeStop());
 		operatorButtonX.whenPressed(new PrepareShooter());
-		operatorButtonY.whenPressed(new StopShooter());
-		operatorButtonRightBumper.whenPressed(new FireShooter());
-		operatorButtonRightBumper.whenReleased(new StopShooter());
+		operatorButtonY.whenPressed(new FireShooter());
+		operatorButtonStart.whenPressed(new StopShooter());
 		operatorButtonLeftBumper.whenPressed(new ClimberFire());
 		operatorButtonRightBumper.whenPressed(new ClimberUnfire());
 	}
