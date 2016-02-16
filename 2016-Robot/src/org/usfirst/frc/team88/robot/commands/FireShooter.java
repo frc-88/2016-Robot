@@ -20,20 +20,20 @@ public class FireShooter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.intake.isShooterReady()){
-    		Robot.intake.startShooter();
     		Robot.intake.move(Robot.intake.INTAKE_IN);
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    		return !Robot.intake.isBoulderInNest();
+    		return !(Robot.intake.isBoulderInLowerNest() || Robot.intake.isBoulderInUpperNest());
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intake.move(0);
     	Robot.intake.stopShooter();
+    	Robot.oi.setOperatorRumble(0.0f);
     }
 
     // Called when another command which requires one or more of the same

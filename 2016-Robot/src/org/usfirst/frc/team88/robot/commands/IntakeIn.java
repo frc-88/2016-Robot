@@ -29,26 +29,24 @@ public class IntakeIn extends Command {
     protected void execute() {
     	switch(state){
     	case BALL_IS_NOT_IN_NEST:
-    		if(!Robot.intake.isBoulderInNest()){
+    		if(!Robot.intake.isBoulderInLowerNest()){
     			Robot.intake.move(Intake.INTAKE_IN);
+    		} else {
+    			state = BALL_IS_IN_NEST;
     		}
-    		state = BALL_IS_IN_NEST;
     		break;
     	case BALL_IS_IN_NEST:
     		Robot.intake.move(Intake.INTAKE_IN/2);
-    		if(!Robot.intake.isBoulderInNest()){
+    		if(!Robot.intake.isBoulderInLowerNest()){
     			state = BALL_HAS_PASSED_NEST;
     		}
-    		break;
-    	case BALL_HAS_PASSED_NEST:
-    		Robot.intake.move(0);
     		break;
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return state ==BALL_HAS_PASSED_NEST;
+        return state == BALL_HAS_PASSED_NEST;
     }
 
     // Called once after isFinished returns true

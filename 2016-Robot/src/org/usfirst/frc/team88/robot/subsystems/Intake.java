@@ -11,12 +11,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Intake extends Subsystem {
-	private final static double P = 1.0;
-	private final static double I = 0.0; 
-	private final static double D = 0.0;
-	private final static double LOADED_DISTANCE = 6.0;
+	private final static double SHOOTER_P = 1.0;
+	private final static double SHOOTER_I = 0.0; 
+	private final static double SHOOTER_D = 0.0;
 	private final static double SHOOTER_SPEED = 10.0;
 	private final static double THRESHOLD_SPEED = SHOOTER_SPEED * 0.05;
+
+	private final static double LOADED_DISTANCE = 6.0;
 	
 	public final static double INTAKE_IN = 0.5;
 	public final static double INTAKE_OUT = -0.5;
@@ -24,7 +25,8 @@ public class Intake extends Subsystem {
 	private final CANTalon intakeTalon;
 	private final CANTalon shooterTalon;
 
-	private final AnalogInput nestSensor;
+	private final AnalogInput lowerNestSensor;
+	private final AnalogInput upperNestSensor;
 	
 	public Intake (){
 		intakeTalon = new CANTalon(RobotMap.intakeMotor);
@@ -33,10 +35,11 @@ public class Intake extends Subsystem {
 
 		shooterTalon = new CANTalon(RobotMap.shooterMotor);
 		shooterTalon.setPosition(0);
-		shooterTalon.setPID(P, I, D);
+		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D);
 		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
 		
-		nestSensor = new AnalogInput(RobotMap.nestSensor);
+		lowerNestSensor = new AnalogInput(RobotMap.lowerNestSensor);
+		upperNestSensor = new AnalogInput(RobotMap.upperNestSensor);
 	}
 
 	public void move(double speed) {
@@ -56,22 +59,33 @@ public class Intake extends Subsystem {
 				(SHOOTER_SPEED + THRESHOLD_SPEED >= shooterTalon.getSpeed()));
 	}
 
-	public boolean isBoulderInNest() {
-		return getDistance() < LOADED_DISTANCE;
+	public boolean isBoulderInLowerNest() {
+		return getLowerNestDistance() < LOADED_DISTANCE;
+	}
+	
+    private double getLowerNestDistance() {
+    	SmartDashboard.putNumber("Lower nest value: ", lowerNestSensor.getValue());
+    	SmartDashboard.putNumber("Lower nest voltage: ", lowerNestSensor.getVoltage());
+    	SmartDashboard.putNumber("Lower nest average voltage: ", lowerNestSensor.getAverageVoltage());
+		
+    	return ( 4.95 / lowerNestSensor.getVoltage()) - 0.42;
+	}
+	
+	public boolean isBoulderInUpperNest() {
+		return getUpperNestDistance() < LOADED_DISTANCE;
+	}
+	
+    private double getUpperNestDistance() {
+    	SmartDashboard.putNumber("Upper nest value: ", upperNestSensor.getValue());
+    	SmartDashboard.putNumber("Upper nest voltage: ", upperNestSensor.getVoltage());
+    	SmartDashboard.putNumber("Upper nest average voltage: ", upperNestSensor.getAverageVoltage());
+		
+    	return ( 4.95 / upperNestSensor.getVoltage()) - 0.42;
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-
-    private double getDistance() {
-    	SmartDashboard.putNumber("IR sensor value: ", nestSensor.getValue());
-    	SmartDashboard.putNumber("IR sensor voltage: ", nestSensor.getVoltage());
-    	SmartDashboard.putNumber("IR sensor average voltage: ", nestSensor.getAverageVoltage());
-		
-    	return ( 4.95 / nestSensor.getAverageVoltage()) - 0.42;
-	}
-	
 }
 
