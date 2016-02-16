@@ -79,7 +79,7 @@ public class Drive extends Subsystem {
 		setDefaultCommand(new DriveWithControllerClosed());
 	}
 	
-	public void DriveSpeed (double leftDirection, double rightDirection){
+	public void setSpeed (double leftDirection, double rightDirection){
 		SmartDashboard.putNumber("Left Input: ", leftDirection);
 		SmartDashboard.putNumber("Right Input: ", rightDirection);
 		
@@ -95,31 +95,6 @@ public class Drive extends Subsystem {
 		
 		difference = (Math.abs(lTalonMaster.getSpeed())-Math.abs(rTalonMaster.getSpeed()));
 		updateSmartDashboard(difference);
-	}
-	
-	public void DriveSimple(double leftDirection, double rightDirection){
-		lTalonMaster.set(leftDirection);
-		rTalonMaster.set(rightDirection);
-	}
-	
-	public void park() {
-		lTalonMaster.setPosition(0);
-		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Position);
-		lTalonMaster.set(0);
-
-		rTalonMaster.setPosition(0);
-		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Position);
-		rTalonMaster.set(0);
-	}
-	
-	public void unpark() {
-		lTalonMaster.setPosition(0);
-		lTalonMaster.setPID(LEFT_P, I, D);
-		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
-
-		rTalonMaster.setPosition(0);
-		rTalonMaster.setPID(RIGHT_P, I, D);
-		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
 	}
 }
 

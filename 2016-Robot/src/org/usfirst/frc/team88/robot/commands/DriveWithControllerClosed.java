@@ -16,7 +16,6 @@ public class DriveWithControllerClosed extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.unpark();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,7 +23,7 @@ public class DriveWithControllerClosed extends Command {
     	double left = Robot.oi.getDriverLeftVerticalAxis();
     	double right = Robot.oi.getDriverRightVerticalAxis();
     	
-    	Robot.drive.DriveSpeed(left, right);
+    	Robot.drive.setSpeed(left, right);
     }
 
     // Make this return true when this Command no longer needs to run execute()
