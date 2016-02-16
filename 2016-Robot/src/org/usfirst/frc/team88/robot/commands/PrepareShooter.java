@@ -14,10 +14,9 @@ public class PrepareShooter extends Command {
 	private final static int INTAKE_MOVING = 1;
 	private final static int BOULDER_IN_NEST = 2;
 	private final static int SHOOTER_MOVING = 3;
-	private final static int DONE = 0;
+	private final static int DONE = 4;
 	
 	private int state = START;
-	private boolean done = false;
 	
     public PrepareShooter() {
     	requires(Robot.intake);
@@ -26,7 +25,6 @@ public class PrepareShooter extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	state = START;
-    	done = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,7 +35,7 @@ public class PrepareShooter extends Command {
     		state = INTAKE_MOVING;
     		break;
     	case INTAKE_MOVING:
-    		if(Robot.intake.isBoulderInNest()) {
+    		if(Robot.intake.isBoulderInLowerNest()) {
     			Robot.intake.move(0);
     			state = BOULDER_IN_NEST;
     		}
@@ -48,14 +46,15 @@ public class PrepareShooter extends Command {
         	break;
     	case SHOOTER_MOVING:
     		if(Robot.intake.isShooterReady()) {
-    			done = true;
+    			Robot.oi.setOperatorRumble(0.5f);
+    			state = DONE;
     		}
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return state == DONE;
     }
     
     

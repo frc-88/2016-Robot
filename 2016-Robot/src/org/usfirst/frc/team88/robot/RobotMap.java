@@ -19,8 +19,8 @@ public class RobotMap {
 	public static int intakeMotor = 4;
 	public static int shooterMotor = 3;
     // light sensor switch to known when boulder is in the nest
-	public static int nestSensor = 0;
-
+	public static int lowerNestSensor = 0;
+	public static int upperNestSensor = 1;
 	
 // Arms
 	public static int armMotorController = 9;
