@@ -31,7 +31,7 @@ public class PrepareShooter extends Command {
     protected void execute() {
     	switch (state) {
     	case START:
-    		Robot.intake.move(Intake.INTAKE_OUT / 2);
+//    		Robot.intake.move(Intake.INTAKE_OUT / 2);
     		state = INTAKE_MOVING;
     		break;
     	case INTAKE_MOVING:

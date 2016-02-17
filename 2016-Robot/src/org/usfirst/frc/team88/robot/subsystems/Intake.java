@@ -17,10 +17,10 @@ public class Intake extends Subsystem {
 	private final static double SHOOTER_SPEED = 0.5;
 	private final static double THRESHOLD_SPEED = SHOOTER_SPEED * 0.05;
 
-	private final static double LOADED_DISTANCE = 6.0;
+	private final static double LOADED_DISTANCE = 1.4;
 	
-	public final static double INTAKE_IN = 0.5;
-	public final static double INTAKE_OUT = -0.5;
+	public final static double INTAKE_IN = 0.9;
+	public final static double INTAKE_OUT = -1.0;
 	
 	private final CANTalon intakeTalon;
 	private final CANTalon shooterTalon;

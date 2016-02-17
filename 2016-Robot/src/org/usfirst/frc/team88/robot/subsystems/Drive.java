@@ -15,8 +15,8 @@ public class Drive extends Subsystem {
 
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 
-	private final static double MAX_SPEED = 600;
-	private final static double P = 1.0;
+	private final static double MAX_SPEED = 1500;
+	private final static double P = 1.2;
 	private final static double I = 0.0;
 	private final static double D = 0.0;
 
@@ -77,8 +77,8 @@ public class Drive extends Subsystem {
 		leftDirection = Robot.oi.applyDeadZone(leftDirection);
 		rightDirection = Robot.oi.applyDeadZone(rightDirection);
 
-		lTalonMaster.set(-leftDirection * MAX_SPEED);
-		rTalonMaster.set(rightDirection * MAX_SPEED);
+		lTalonMaster.set(leftDirection * MAX_SPEED);
+		rTalonMaster.set(-rightDirection * MAX_SPEED);
 
 		updateSmartDashboard();
 	}
