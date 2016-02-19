@@ -1,6 +1,7 @@
 package org.usfirst.frc.team88.robot.subsystems;
 
 import org.usfirst.frc.team88.robot.RobotMap;
+import org.usfirst.frc.team88.robot.commands.HookDeliverySystemWithController;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,40 +11,40 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class HookDeliverySystem extends Subsystem {
+	
+    private final CANTalon angleTalon;
+    private final CANTalon HDSTalon;
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	private final CANTalon angleTalon;
-	private final CANTalon elevatorTalon;
-	
-	public HookDeliverySystem(){
-		angleTalon = new CANTalon(RobotMap.hdsAngleMotorController);
-//		angleTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		angleTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		
-		elevatorTalon = new CANTalon(RobotMap.hdsElevatorMotorController);
-		elevatorTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		elevatorTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-	}
-	
-	public void moveAngle(double speed){
-		angleTalon.set(speed);
-
-		SmartDashboard.putNumber("Angle Voltage: ", angleTalon.getOutputVoltage());
-		SmartDashboard.putNumber("Angle Current: ", angleTalon.getOutputCurrent());
-	}
-	
-	public void moveElevator(double speed){
-		elevatorTalon.set(speed);
-	
-		SmartDashboard.putNumber("Elevator Encoder: ", elevatorTalon.getEncPosition());
-		SmartDashboard.putNumber("Elevator Voltage: ", elevatorTalon.getOutputVoltage());
-		SmartDashboard.putNumber("Elevator Current: ", elevatorTalon.getOutputCurrent());
-	}
+    public HookDeliverySystem() {
+    	angleTalon = new CANTalon(RobotMap.hdsAngleMotorController);
+    	angleTalon.enableBrakeMode(true);
+    	
+    	HDSTalon = new CANTalon(RobotMap.hdsElevatorMotorController);
+    	HDSTalon.enableBrakeMode(true);
+    }
+    
+    public void moveAngle(double voltage) {
+    	angleTalon.set(voltage);
+    	
+    	SmartDashboard.putNumber("Angle Voltage: ", angleTalon.getOutputVoltage());
+    	SmartDashboard.putNumber("Angle Current: ", angleTalon.getOutputCurrent());
+    	SmartDashboard.putNumber("Angle Encoder Position: ", angleTalon.getEncPosition());
+    	SmartDashboard.putNumber("Angle Encoder Velocity: ", angleTalon.getEncVelocity());
+    }
+    
+    public void moveHDS(double voltage){
+    	HDSTalon.set(voltage);
+    	
+    	SmartDashboard.putNumber("HDS Voltage: ", HDSTalon.getOutputVoltage());
+    	SmartDashboard.putNumber("HDS Current: ", HDSTalon.getOutputCurrent());
+    	SmartDashboard.putNumber("HDS Encoder Position: ", HDSTalon.getEncPosition());
+    	SmartDashboard.putNumber("HDS Encoder Velocity: ", HDSTalon.getEncVelocity());
+    }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new HookDeliverySystemWithController());
     }
 }
 

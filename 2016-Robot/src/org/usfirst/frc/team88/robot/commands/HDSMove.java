@@ -48,13 +48,13 @@ public class HDSMove extends Command {
     	}
     	
     	Robot.HDS.moveAngle(speedAngle);
-    	Robot.HDS.moveElevator(speedElevator);
+    	//Robot.HDS.moveElevator(speedElevator);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	Robot.HDS.moveAngle(0.0);
-    	Robot.HDS.moveElevator(0.0);
+    	//Robot.HDS.moveElevator(0.0);
         return false;
     }
 
