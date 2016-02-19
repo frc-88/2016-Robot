@@ -30,28 +30,30 @@ public class PrepareShooter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.getShooterSpeed();
+    	Robot.intake.startShooter();
+    	state = DONE;
     	
-    	switch (state) {
-    	case START:
+//    	switch (state) {
+//    	case START:
 //    		Robot.intake.move(Intake.INTAKE_OUT / 2);
-    		state = INTAKE_MOVING;
-    		break;
-    	case INTAKE_MOVING:
+//    		state = INTAKE_MOVING;
+//    		break;
+//    	case INTAKE_MOVING:
 //    		if(Robot.intake.isBoulderInLowerNest()) {
-    			Robot.intake.move(0);
-    			state = BOULDER_IN_NEST;
+//    			Robot.intake.move(0);
+//    			state = BOULDER_IN_NEST;
+//   		}
+//    		break;
+//    	case BOULDER_IN_NEST:
+//    		Robot.intake.startShooter();
+//        	state = SHOOTER_MOVING;
+//        	break;
+//    	case SHOOTER_MOVING:
+//    		if(Robot.intake.isShooterReady()) {
+//    			Robot.oi.setOperatorRumble(0.5f);
+//    			state = DONE;
 //    		}
-    		break;
-    	case BOULDER_IN_NEST:
-    		Robot.intake.startShooter();
-        	state = SHOOTER_MOVING;
-        	break;
-    	case SHOOTER_MOVING:
-    		if(Robot.intake.isShooterReady()) {
-    			Robot.oi.setOperatorRumble(0.5f);
-    			state = DONE;
-    		}
-    	}
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

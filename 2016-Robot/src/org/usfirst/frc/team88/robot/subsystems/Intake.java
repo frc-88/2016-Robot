@@ -15,7 +15,7 @@ public class Intake extends Subsystem {
 	private final static double SHOOTER_P = 1.0;
 	private final static double SHOOTER_I = 0.0; 
 	private final static double SHOOTER_D = 0.0;
-	private final static double SHOOTER_SPEED = 0.6;
+	private final static double SHOOTER_SPEED = 0.55;
 	private final static double THRESHOLD_SPEED = SHOOTER_SPEED * 0.05;
 
 	private final static double LOADED_DISTANCE = 1.4;
