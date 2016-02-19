@@ -29,16 +29,18 @@ public class PrepareShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.intake.getShooterSpeed();
+    	
     	switch (state) {
     	case START:
 //    		Robot.intake.move(Intake.INTAKE_OUT / 2);
     		state = INTAKE_MOVING;
     		break;
     	case INTAKE_MOVING:
-    		if(Robot.intake.isBoulderInLowerNest()) {
+//    		if(Robot.intake.isBoulderInLowerNest()) {
     			Robot.intake.move(0);
     			state = BOULDER_IN_NEST;
-    		}
+//    		}
     		break;
     	case BOULDER_IN_NEST:
     		Robot.intake.startShooter();

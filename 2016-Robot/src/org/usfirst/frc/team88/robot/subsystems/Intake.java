@@ -1,6 +1,7 @@
 package org.usfirst.frc.team88.robot.subsystems;
 
 import org.usfirst.frc.team88.robot.RobotMap;
+import org.usfirst.frc.team88.robot.commands.IntakeUpdateSmartDashboard;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -14,7 +15,7 @@ public class Intake extends Subsystem {
 	private final static double SHOOTER_P = 1.0;
 	private final static double SHOOTER_I = 0.0; 
 	private final static double SHOOTER_D = 0.0;
-	private final static double SHOOTER_SPEED = 0.5;
+	private final static double SHOOTER_SPEED = 0.6;
 	private final static double THRESHOLD_SPEED = SHOOTER_SPEED * 0.05;
 
 	private final static double LOADED_DISTANCE = 1.4;
@@ -34,6 +35,7 @@ public class Intake extends Subsystem {
 		intakeTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 
 		shooterTalon = new CANTalon(RobotMap.shooterMotor);
+		shooterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.EncRising);
 //		shooterTalon.setPosition(0);
 //		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D);
 //		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
@@ -56,11 +58,17 @@ public class Intake extends Subsystem {
 	}
 	
 	public boolean isShooterReady(){	
-//		return ((SHOOTER_SPEED - THRESHOLD_SPEED <= shooterTalon.getSpeed()) && 
-//				(SHOOTER_SPEED + THRESHOLD_SPEED >= shooterTalon.getSpeed()));
-		return true;
+		return ((SHOOTER_SPEED - THRESHOLD_SPEED <= shooterTalon.getSpeed()) && 
+				(SHOOTER_SPEED + THRESHOLD_SPEED >= shooterTalon.getSpeed()));
 	}
 
+	public double getShooterSpeed() {
+		SmartDashboard.putNumber("Shooter speed: ", shooterTalon.getSpeed());
+		SmartDashboard.putNumber("Shooter position: ", shooterTalon.getEncPosition());
+		
+		return shooterTalon.getSpeed();
+	}
+	
 	public boolean isBoulderInLowerNest() {
 		return getLowerNestDistance() < LOADED_DISTANCE;
 	}
@@ -86,8 +94,7 @@ public class Intake extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new IntakeUpdateSmartDashboard());
     }
 }
 
