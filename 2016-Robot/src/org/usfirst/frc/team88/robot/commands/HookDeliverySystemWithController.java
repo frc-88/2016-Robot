@@ -26,7 +26,7 @@ public class HookDeliverySystemWithController extends Command {
     	HDSSpeed = Robot.oi.applyDeadZone(HDSSpeed);
     	
     	Robot.HDS.moveAngle(angleSpeed);
-    	Robot.HDS.moveHDS(HDSSpeed);
+//    	Robot.HDS.moveHDS(HDSSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

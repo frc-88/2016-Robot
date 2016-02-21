@@ -4,6 +4,8 @@ import org.usfirst.frc.team88.robot.commands.ClimberDisable;
 import org.usfirst.frc.team88.robot.commands.ClimberEnable;
 import org.usfirst.frc.team88.robot.commands.ClimberFire;
 import org.usfirst.frc.team88.robot.commands.ClimberUnfire;
+import org.usfirst.frc.team88.robot.commands.DontMove;
+import org.usfirst.frc.team88.robot.commands.DriveBackwards3Meters;
 import org.usfirst.frc.team88.robot.commands.DriveWithControllerBackwards;
 import org.usfirst.frc.team88.robot.commands.DriveWithControllerClosed;
 import org.usfirst.frc.team88.robot.commands.FireShooter;
@@ -79,6 +81,10 @@ public class OI {
 		driverButtonStart.whenReleased(new ClimberDisable());
 		driverButtonRightBumper.whenPressed(new DriveWithControllerBackwards());
 		driverButtonRightBumper.whenReleased(new DriveWithControllerClosed());
+		driverButtonA.whenPressed(new DriveBackwards3Meters());
+		driverButtonA.whenReleased(new DriveWithControllerClosed());
+		driverButtonY.whenPressed(new DontMove());
+		driverButtonY.whenReleased(new DriveWithControllerClosed());
 
 		operatorButtonA.whenPressed(new IntakeIn());
 		operatorButtonA.whenReleased(new IntakeStop());

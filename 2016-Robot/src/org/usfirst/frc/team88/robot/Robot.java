@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team88.robot.commands.DoNothing;
+import org.usfirst.frc.team88.robot.commands.DriveBackwards3Meters;
+import org.usfirst.frc.team88.robot.commands.LowBarAutoNoShoot;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -81,19 +84,20 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
+//        autonomousCommand = (Command) chooser.getSelected();
+//        
+//        String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+//		switch(autoSelected) {
+//		case "LowBarAutoNoShoot":
+//			autonomousCommand = new LowBarAutoNoShoot();
+//			break;
+//		case "Default Auto":
+//		default:
+//			autonomousCommand = new LowBarAutoNoShoot();
+//			break;
+//		} 
+//    	
+    	autonomousCommand = new DriveBackwards3Meters();
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
