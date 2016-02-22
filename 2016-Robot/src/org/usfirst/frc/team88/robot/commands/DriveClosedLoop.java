@@ -2,21 +2,21 @@ package org.usfirst.frc.team88.robot.commands;
 
 import org.usfirst.frc.team88.robot.Robot;
 
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DontMove extends Command {
+public class DriveClosedLoop extends Command {
 
-    public DontMove() {
+    public DriveClosedLoop() {
     	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.setSpeed(0, 0);
-    	
+    	Robot.drive.setControlMode(TalonControlMode.Speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +25,7 @@ public class DontMove extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

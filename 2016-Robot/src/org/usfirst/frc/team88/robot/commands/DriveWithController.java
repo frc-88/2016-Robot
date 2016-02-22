@@ -2,40 +2,49 @@ package org.usfirst.frc.team88.robot.commands;
 
 import org.usfirst.frc.team88.robot.Robot;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveBackwards3Meters extends Command {
-	private final static double DISTANCE = 1000.0;
+public class DriveWithController extends Command {
+	private double left, right;
 	
-    public DriveBackwards3Meters() {
+    public DriveWithController() {
     	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.set(0.5, 0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if ((Robot.drive.getControlMode() == CANTalon.TalonControlMode.Speed) ||
+    		(Robot.drive.getControlMode() == CANTalon.TalonControlMode.PercentVbus)) {
+
+    		left = Robot.oi.getDriverLeftVerticalAxis();
+        	right = Robot.oi.getDriverRightVerticalAxis();
+        	
+    		left = Robot.oi.applyDeadZone(left);
+    		right = Robot.oi.applyDeadZone(right);
+        	
+        	Robot.drive.set(left, right);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Robot.drive.getLeftPosition() > DISTANCE && Robot.drive.getRightPosition() > DISTANCE);
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.set(0.0, 0.0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drive.set(0.0, 0.0);
     }
 }

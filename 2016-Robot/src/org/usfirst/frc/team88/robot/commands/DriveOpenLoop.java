@@ -2,33 +2,30 @@ package org.usfirst.frc.team88.robot.commands;
 
 import org.usfirst.frc.team88.robot.Robot;
 
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveWithControllerBackwards extends Command {
+public class DriveOpenLoop extends Command {
 
-    public DriveWithControllerBackwards() {
-    	super("DriveWithControllerBackwards");
+    public DriveOpenLoop() {
     	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.drive.setControlMode(TalonControlMode.PercentVbus);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double left = Robot.oi.getDriverLeftVerticalAxis();
-    	double right = Robot.oi.getDriverRightVerticalAxis();
-    	
-    	Robot.drive.setSpeed(-left, -right);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
