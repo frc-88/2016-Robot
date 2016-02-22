@@ -6,9 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team88.robot.commands.DoNothing;
 import org.usfirst.frc.team88.robot.commands.DriveBackwards3Meters;
-import org.usfirst.frc.team88.robot.commands.LowBarAutoNoShoot;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -59,6 +57,10 @@ public class Robot extends IterativeRobot {
 //        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        
+        // Buttons for testing autonomous commands
+        SmartDashboard.putData("Backwards 3m", new DriveBackwards3Meters());
+
     }
 	
 	/**
@@ -97,7 +99,7 @@ public class Robot extends IterativeRobot {
 //			break;
 //		} 
 //    	
-    	autonomousCommand = new DriveBackwards3Meters();
+//    	autonomousCommand = new DriveBackwards3Meters();
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
