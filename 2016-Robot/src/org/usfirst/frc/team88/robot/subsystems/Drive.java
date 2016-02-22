@@ -73,16 +73,6 @@ public class Drive extends Subsystem {
 		return rTalonMaster.getEncPosition();
 	}
 
-	public void park() {
-		set(0.0,0.0);
-		setControlMode(CANTalon.TalonControlMode.Position);
-		set(0.0,0.0);
-	}
-	
-	public void unpark() {
-		setControlMode(CANTalon.TalonControlMode.Speed);
-	}
-	
 	public void set(double left, double right) {
 		SmartDashboard.putNumber("Left Input: ", left);
 		SmartDashboard.putNumber("Right Input: ", right);
