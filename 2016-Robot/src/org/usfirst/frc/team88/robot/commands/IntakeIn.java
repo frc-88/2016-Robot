@@ -35,23 +35,25 @@ public class IntakeIn extends Command {
     			state = BALL_IS_IN_NEST;
     		}
     		break;
-    	case BALL_IS_IN_NEST:
-    		Robot.intake.move(Intake.INTAKE_IN/2);
-    		if(!Robot.intake.isBoulderInLowerNest()){
-    			state = BALL_HAS_PASSED_NEST;
-    		}
-    		break;
+//    	case BALL_IS_IN_NEST:
+//    		Robot.intake.move(Intake.INTAKE_IN/2);
+//    		if(!Robot.intake.isBoulderInLowerNest()){
+//    			state = BALL_HAS_PASSED_NEST;
+//    		}
+//    		break;
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return state == BALL_HAS_PASSED_NEST;
+//        return state == BALL_HAS_PASSED_NEST;
+    	return state == BALL_IS_IN_NEST;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intake.move(0);
+    	Robot.oi.setOperatorRumble(0.5f);
     }
 
     // Called when another command which requires one or more of the same

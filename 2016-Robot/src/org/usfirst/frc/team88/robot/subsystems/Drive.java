@@ -11,15 +11,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Author: Nick Avtges
  */
+
+// TODO:
+// implement park mode, test its behavior when robot is disabled
+// implement capability to easily switch between closed loop speed control
+//         and open loop percentVbus control
+// test drive behavior with brake mode enabled
+
 public class Drive extends Subsystem {
 
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 
-	private final static double MAX_SPEED = 600;
-	private final static double P = 1.0;
+	private final static double MAX_SPEED = 1200;
+	private final static double P = 1.2;
 	private final static double I = 0.0;
 	private final static double D = 0.0;
-
+	
 	public Drive() {
 
 		// left side drive controllers
@@ -30,6 +37,7 @@ public class Drive extends Subsystem {
 		lTalonMaster.setPosition(0);
 		lTalonMaster.setPID(P, I, D);
 		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+//		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 
 		lTalonSlave = new CANTalon(RobotMap.driveLeftSlave);
 		lTalonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -43,6 +51,7 @@ public class Drive extends Subsystem {
 		rTalonMaster.setPosition(0);
 		rTalonMaster.setPID(P, I, D);
 		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+//		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 
 		rTalonSlave = new CANTalon(RobotMap.driveRightSlave);
 		rTalonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -50,6 +59,26 @@ public class Drive extends Subsystem {
 
 	}
 
+	public void setControlMode(CANTalon.TalonControlMode mode) {
+		switch (mode){
+
+		}
+		
+		// lTalonMaster.reverseOutput(true);
+		lTalonMaster.setPosition(0);
+		lTalonMaster.setPID(P, I, D);
+		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+
+		// rTalonMaster.reverseOutput(true);
+		rTalonMaster.setPosition(0);
+		rTalonMaster.setPID(P, I, D);
+		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+//		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+//		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+	}
+
+
+	
 	private void updateSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder: ", lTalonMaster.getPosition());
 		SmartDashboard.putNumber("Left Master Voltage: ", lTalonMaster.getOutputVoltage());
@@ -69,6 +98,19 @@ public class Drive extends Subsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DriveWithControllerClosed());
 	}
+	
+	public void setPosition(double lPosition, double rPosition){
+		lTalonMaster.setPosition(lPosition);
+		rTalonMaster.setPosition(rPosition);
+	}
+	
+	public double getLeftPosition(){
+		return lTalonMaster.getPosition();
+	}
+	
+	public double getRightPosition(){
+		return rTalonMaster.getPosition();
+	}
 
 	public void setSpeed(double leftDirection, double rightDirection) {
 		SmartDashboard.putNumber("Left Input: ", leftDirection);
@@ -77,9 +119,12 @@ public class Drive extends Subsystem {
 		leftDirection = Robot.oi.applyDeadZone(leftDirection);
 		rightDirection = Robot.oi.applyDeadZone(rightDirection);
 
-		lTalonMaster.set(-leftDirection * MAX_SPEED);
-		rTalonMaster.set(rightDirection * MAX_SPEED);
+		lTalonMaster.set(leftDirection * MAX_SPEED);
+		rTalonMaster.set(-rightDirection * MAX_SPEED);
 
+//		lTalonMaster.set(leftDirection);
+//		rTalonMaster.set(-rightDirection);
+		
 		updateSmartDashboard();
 	}
 }

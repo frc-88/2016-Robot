@@ -1,50 +1,41 @@
 package org.usfirst.frc.team88.robot.commands;
 
 import org.usfirst.frc.team88.robot.Robot;
-import org.usfirst.frc.team88.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class FireShooter extends Command {
-	private int count;
-	
-	private static final int DELAY = 100; // number of 20ms seconds to wait before ending 
-	
-    public FireShooter() {
-    	requires(Robot.intake);
+public class HookDeliverySystemWithController extends Command {
+
+    public HookDeliverySystemWithController() {
+    	requires(Robot.HDS);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	count = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.intake.isShooterReady()){
-    		Robot.intake.move(Intake.INTAKE_IN);
-//    	}
+    	double angleSpeed = Robot.oi.getOperatorRightHorizontalAxis();
+    	double HDSSpeed = Robot.oi.getOperatorZAxis();
+    	
+    	angleSpeed = Robot.oi.applyDeadZone(angleSpeed);
+    	HDSSpeed = Robot.oi.applyDeadZone(HDSSpeed);
+    	
+    	Robot.HDS.moveAngle(angleSpeed);
+//    	Robot.HDS.moveHDS(HDSSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	if (!Robot.intake.isBoulderInLowerNest()) {
-    		if (count ++ >= DELAY) { 
-    			return true;
-    		}
-//    	}
-    	
-    	return false;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.move(0);
-    	Robot.intake.stopShooter();
-//    	Robot.oi.setOperatorRumble(0.0f);
     }
 
     // Called when another command which requires one or more of the same
