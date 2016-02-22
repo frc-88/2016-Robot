@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DrivePark extends Command {
+	private TalonControlMode previousMode;
 	
     public DrivePark() {
     	requires(Robot.drive);
@@ -16,7 +17,8 @@ public class DrivePark extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.set(0,0);
+    	previousMode = Robot.drive.getControlMode();
+    	Robot.drive.set(0, 0);
     	Robot.drive.setControlMode(TalonControlMode.Position);
     	Robot.drive.set(0, 0);
     }
@@ -37,5 +39,6 @@ public class DrivePark extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.drive.setControlMode(previousMode);
     }
 }
