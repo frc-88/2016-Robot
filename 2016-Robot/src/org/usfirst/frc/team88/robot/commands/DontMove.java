@@ -15,7 +15,7 @@ public class DontMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.setSpeed(0, 0);
+    	Robot.drive.set(0, 0);
     	
     }
 

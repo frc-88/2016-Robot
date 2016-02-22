@@ -23,7 +23,7 @@ public class DriveWithControllerBackwards extends Command {
     	double left = Robot.oi.getDriverLeftVerticalAxis();
     	double right = Robot.oi.getDriverRightVerticalAxis();
     	
-    	Robot.drive.setSpeed(-left, -right);
+    	Robot.drive.set(-left, -right);
     }
 
     // Make this return true when this Command no longer needs to run execute()

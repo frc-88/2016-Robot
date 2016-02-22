@@ -8,17 +8,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DrivePark extends Command {
-	
-    public DrivePark() {
+public class DriveOpenLoop extends Command {
+
+    public DriveOpenLoop() {
     	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.set(0,0);
-    	Robot.drive.setControlMode(TalonControlMode.Position);
-    	Robot.drive.set(0, 0);
+    	Robot.drive.setControlMode(TalonControlMode.PercentVbus);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +25,7 @@ public class DrivePark extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
