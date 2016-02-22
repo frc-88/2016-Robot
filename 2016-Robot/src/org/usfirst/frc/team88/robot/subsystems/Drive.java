@@ -112,6 +112,26 @@ public class Drive extends Subsystem {
 		return rTalonMaster.getPosition();
 	}
 
+	public void park() {
+		lTalonMaster.setPosition(0);
+		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Position);
+		lTalonMaster.set(0);
+
+		rTalonMaster.setPosition(0);
+		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Position);
+		rTalonMaster.set(0);
+	}
+	
+	public void unpark() {
+		lTalonMaster.setPosition(0);
+		lTalonMaster.setPID(P, I, D);
+		lTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+
+		rTalonMaster.setPosition(0);
+		rTalonMaster.setPID(P, I, D);
+		rTalonMaster.changeControlMode(CANTalon.TalonControlMode.Speed);
+	}
+	
 	public void setSpeed(double leftDirection, double rightDirection) {
 		SmartDashboard.putNumber("Left Input: ", leftDirection);
 		SmartDashboard.putNumber("Right Input: ", rightDirection);
