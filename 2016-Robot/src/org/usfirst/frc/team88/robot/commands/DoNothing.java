@@ -10,6 +10,5 @@ public class DoNothing extends CommandGroup {
     public  DoNothing() {
 
     	addSequential(new IntakeIn());
-    	addParallel(new DontMove());
     }
 }
