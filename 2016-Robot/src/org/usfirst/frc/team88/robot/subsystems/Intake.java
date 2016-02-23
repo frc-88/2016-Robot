@@ -15,7 +15,8 @@ public class Intake extends Subsystem {
 	private final static double SHOOTER_P = 1.0;
 	private final static double SHOOTER_I = 0.0; 
 	private final static double SHOOTER_D = 0.0;
-	private final static double SHOOTER_SPEED = 0.65;
+//	private final static double SHOOTER_SPEED = 0.65;
+	private final static double SHOOTER_SPEED = 100;
 	private final static double THRESHOLD_SPEED = SHOOTER_SPEED * 0.05;
 
 	private final static double LOADED_DISTANCE = 1.4;
@@ -34,11 +35,11 @@ public class Intake extends Subsystem {
 		intakeTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 
 		shooterTalon = new CANTalon(RobotMap.shooterMotor);
-		shooterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.EncRising);
-//		shooterTalon.setPosition(0);
-//		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D);
-//		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
-		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		shooterTalon.setPosition(0);
+		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D);
+		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
+//		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
 		boulderHolder = new AnalogInput(RobotMap.boulderHolder);
 	}
