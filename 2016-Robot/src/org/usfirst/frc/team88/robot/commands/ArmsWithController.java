@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveArmsWithController extends Command {
+public class ArmsWithController extends Command {
 
-    public MoveArmsWithController() {
+    public ArmsWithController() {
     	requires(Robot.arms);
     }
 
