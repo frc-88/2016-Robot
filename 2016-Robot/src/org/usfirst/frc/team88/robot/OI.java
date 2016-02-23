@@ -8,12 +8,12 @@ import org.usfirst.frc.team88.robot.commands.DriveClosedLoop;
 import org.usfirst.frc.team88.robot.commands.DriveOpenLoop;
 import org.usfirst.frc.team88.robot.commands.DrivePark;
 import org.usfirst.frc.team88.robot.commands.DriveWithController;
-import org.usfirst.frc.team88.robot.commands.FireShooter;
+import org.usfirst.frc.team88.robot.commands.ShooterFire;
 import org.usfirst.frc.team88.robot.commands.IntakeIn;
 import org.usfirst.frc.team88.robot.commands.IntakeOut;
 import org.usfirst.frc.team88.robot.commands.IntakeStop;
-import org.usfirst.frc.team88.robot.commands.PrepareShooter;
-import org.usfirst.frc.team88.robot.commands.StopShooter;
+import org.usfirst.frc.team88.robot.commands.ShooterPrepare;
+import org.usfirst.frc.team88.robot.commands.ShooterStop;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -88,9 +88,9 @@ public class OI {
 		operatorButtonA.whenReleased(new IntakeStop());
 		operatorButtonB.whenPressed(new IntakeOut());
 		operatorButtonB.whenReleased(new IntakeStop());
-		operatorButtonX.whenPressed(new PrepareShooter());
-		operatorButtonY.whenPressed(new FireShooter());
-		operatorButtonStart.whenPressed(new StopShooter());
+		operatorButtonX.whenPressed(new ShooterPrepare());
+		operatorButtonY.whenPressed(new ShooterFire());
+		operatorButtonStart.whenPressed(new ShooterStop());
 		operatorButtonLeftBumper.whenPressed(new ClimberFire());
 		operatorButtonRightBumper.whenPressed(new ClimberUnfire());
 	}
@@ -124,14 +124,14 @@ public class OI {
 		return driverController.getRawAxis(LEFT_Z_AXIS) - driverController.getRawAxis(RIGHT_Z_AXIS);
 	}
 
-	public void vibrateDriver(RumbleType type, float value) {
-		driverController.setRumble(type, value);
+	public void rumbleDriverLeft(float rumble) {
+		driverController.setRumble(RumbleType.kLeftRumble, rumble);
 	}
 
-	public void setDriverRumble(float rumble) {
-		driverController.setRumble(RumbleType.kLeftRumble, rumble);
+	public void rumbleDriverRight(float rumble) {
 		driverController.setRumble(RumbleType.kRightRumble, rumble);
 	}
+
 
 	// operator
 	public double getOperatorRightVerticalAxis() {
@@ -162,12 +162,11 @@ public class OI {
 		return operatorController.getRawAxis(LEFT_Z_AXIS) - operatorController.getRawAxis(RIGHT_Z_AXIS);
 	}
 
-	public void vibrateOperator(RumbleType type, float value) {
-		operatorController.setRumble(type, value);
+	public void rumbleOperatorLeft(float rumble) {
+		operatorController.setRumble(RumbleType.kLeftRumble, rumble);
 	}
 
-	public void setOperatorRumble(float rumble) {
-		operatorController.setRumble(RumbleType.kLeftRumble, rumble);
+	public void rumbleOperatorRight(float rumble) {
 		operatorController.setRumble(RumbleType.kRightRumble, rumble);
 	}
 

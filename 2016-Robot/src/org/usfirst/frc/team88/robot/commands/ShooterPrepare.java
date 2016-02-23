@@ -7,31 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class HookDeliverySystemWithController extends Command {
+public class ShooterPrepare extends Command {
 
-    public HookDeliverySystemWithController() {
-    	requires(Robot.HDS);
+    public ShooterPrepare() {
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.intake.startShooter();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double angleSpeed = Robot.oi.getOperatorRightHorizontalAxis();
-    	double HDSSpeed = Robot.oi.getOperatorZAxis();
-    	
-    	angleSpeed = Robot.oi.applyDeadZone(angleSpeed);
-    	HDSSpeed = Robot.oi.applyDeadZone(HDSSpeed);
-    	
-    	Robot.HDS.moveAngle(angleSpeed);
-//    	Robot.HDS.moveHDS(HDSSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

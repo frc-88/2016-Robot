@@ -26,8 +26,7 @@ public class Intake extends Subsystem {
 	private final CANTalon intakeTalon;
 	private final CANTalon shooterTalon;
 
-	private final AnalogInput lowerNestSensor;
-	private final AnalogInput upperNestSensor;
+	private final AnalogInput boulderHolder;
 	
 	public Intake (){
 		intakeTalon = new CANTalon(RobotMap.intakeMotor);
@@ -41,8 +40,7 @@ public class Intake extends Subsystem {
 //		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
-		lowerNestSensor = new AnalogInput(RobotMap.lowerNestSensor);
-		upperNestSensor = new AnalogInput(RobotMap.upperNestSensor);
+		boulderHolder = new AnalogInput(RobotMap.boulderHolder);
 	}
 
 	public void move(double speed) {
@@ -69,28 +67,16 @@ public class Intake extends Subsystem {
 		return shooterTalon.getSpeed();
 	}
 	
-	public boolean isBoulderInLowerNest() {
-		return getLowerNestDistance() < LOADED_DISTANCE;
+	public boolean isBoulderInHolder() {
+		return getBoulderHolderDistance() < LOADED_DISTANCE;
 	}
 	
-    private double getLowerNestDistance() {
-    	SmartDashboard.putNumber("Lower nest value: ", lowerNestSensor.getValue());
-    	SmartDashboard.putNumber("Lower nest voltage: ", lowerNestSensor.getVoltage());
-    	SmartDashboard.putNumber("Lower nest average voltage: ", lowerNestSensor.getAverageVoltage());
+    private double getBoulderHolderDistance() {
+    	SmartDashboard.putNumber("Boulder holder value: ", boulderHolder.getValue());
+    	SmartDashboard.putNumber("Boulder holder voltage: ", boulderHolder.getVoltage());
+    	SmartDashboard.putNumber("Boulder holder average voltage: ", boulderHolder.getAverageVoltage());
 		
-    	return ( 4.95 / lowerNestSensor.getVoltage()) - 0.42;
-	}
-	
-	public boolean isBoulderInUpperNest() {
-		return getUpperNestDistance() < LOADED_DISTANCE;
-	}
-	
-    private double getUpperNestDistance() {
-    	SmartDashboard.putNumber("Upper nest value: ", upperNestSensor.getValue());
-    	SmartDashboard.putNumber("Upper nest voltage: ", upperNestSensor.getVoltage());
-    	SmartDashboard.putNumber("Upper nest average voltage: ", upperNestSensor.getAverageVoltage());
-		
-    	return ( 4.95 / upperNestSensor.getVoltage()) - 0.42;
+    	return ( 4.95 / boulderHolder.getVoltage()) - 0.42;
 	}
 	
     public void initDefaultCommand() {

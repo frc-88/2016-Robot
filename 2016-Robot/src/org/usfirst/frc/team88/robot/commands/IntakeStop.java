@@ -16,7 +16,7 @@ public class IntakeStop extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.intake.move(0.0);
-    	Robot.oi.setOperatorRumble(0.0f);
+    	Robot.oi.rumbleOperatorRight(0.0f);
     }
 
     // Called repeatedly when this Command is scheduled to run

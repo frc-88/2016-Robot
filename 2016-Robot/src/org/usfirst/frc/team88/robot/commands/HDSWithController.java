@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveArmsWithController extends Command {
+public class HDSWithController extends Command {
 
-    public MoveArmsWithController() {
-    	requires(Robot.arms);
+    public HDSWithController() {
+    	requires(Robot.HDS);
     }
 
     // Called just before this Command runs the first time
@@ -19,10 +19,14 @@ public class MoveArmsWithController extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = Robot.oi.getOperatorLeftVerticalAxis();
+    	double angleSpeed = Robot.oi.getOperatorRightHorizontalAxis();
+    	double HDSSpeed = Robot.oi.getOperatorZAxis();
     	
-    	speed = Robot.oi.applyDeadZone(speed);
-    	Robot.arms.move(speed);
+    	angleSpeed = Robot.oi.applyDeadZone(angleSpeed);
+    	HDSSpeed = Robot.oi.applyDeadZone(HDSSpeed);
+    	
+    	Robot.HDS.moveAngle(angleSpeed);
+//    	Robot.HDS.moveHDS(HDSSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

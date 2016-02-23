@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StopShooter extends Command {
+public class ShooterStop extends Command {
 
-    public StopShooter() {
+    public ShooterStop() {
     	requires(Robot.intake);
     }
 
