@@ -7,15 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StopShooter extends Command {
+public class ShooterPrepare extends Command {
 
-    public StopShooter() {
+    public ShooterPrepare() {
     	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.stopShooter();
+    	Robot.intake.startShooter();
     }
 
     // Called repeatedly when this Command is scheduled to run
