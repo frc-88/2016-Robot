@@ -12,6 +12,7 @@ import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
 import org.usfirst.frc.team88.robot.subsystems.HookDeliverySystem;
 import org.usfirst.frc.team88.robot.subsystems.Intake;
+import org.usfirst.frc.team88.robot.subsystems.Lights;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static Arms arms;
 	public static Climber climber;
 	public static HookDeliverySystem HDS;
+	public static Lights lights;
 	public static CameraServer server;
 
     Command autonomousCommand;
@@ -46,12 +48,13 @@ public class Robot extends IterativeRobot {
 		arms = new Arms();
 		climber = new Climber();
 		HDS = new HookDeliverySystem();
+		lights = new Lights();
 		
 		oi = new OI();
 
-//        server = CameraServer.getInstance();
-//        server.setQuality(50);
-//        server.startAutomaticCapture("cam0");
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        server.startAutomaticCapture(RobotMap.cameraName);
 		
         chooser = new SendableChooser();
 //        chooser.addDefault("Default Auto", new ExampleCommand());
