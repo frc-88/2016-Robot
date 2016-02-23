@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveBackwards3Meters extends Command {
+public class AutoBack3Meters extends Command {
 	private final static double DISTANCE = 1000.0;
 	
-    public DriveBackwards3Meters() {
+    public AutoBack3Meters() {
     	requires(Robot.drive);
     }
 
