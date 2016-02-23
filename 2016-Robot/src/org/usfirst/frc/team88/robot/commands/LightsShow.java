@@ -15,14 +15,15 @@ public class LightsShow extends Command {
 		requires(Robot.lights);
 	}
 
+	DriverStation ds;
+	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		ds = DriverStation.getInstance();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		DriverStation ds = DriverStation.getInstance();
-
 		if (ds.isAutonomous()) {
 			// green lights in autonomous
 			Robot.lights.setMode(Lights.Mode.GreenJuggle);
