@@ -21,9 +21,14 @@ public class Lights extends Subsystem {
 		// 5 = Red SineLon = Shooter Warming Up/ Ready: Analog = 0 1 1
 		// 6 = Blue SineLon = Shooter Warming Up/ Ready: Analog = 1 0 1
 		// 7 = Nothing = Nothing = 111
-		Rainbow(false, false, false), RedJuggle(false, false, true), BlueJuggle(false, true, false), GreenJuggle(false,
-				true, true), Disco(true, false, false), RedAnalog(true, false, true), BlueAnalog(true, true,
-						false), Nothing(true, true, true);
+		Rainbow		(false, false, false), 
+		RedJuggle	(false, false,  true), 
+		BlueJuggle	(false,  true, false), 
+		GreenJuggle	(false,  true,  true), 
+		Disco		( true, false, false), 
+		RedAnalog	( true, false,  true), 
+		BlueAnalog	( true,  true, false), 
+		Nothing		( true,  true,  true);
 
 		private boolean bit1, bit2, bit3;
 
@@ -38,11 +43,11 @@ public class Lights extends Subsystem {
 		}
 
 		public boolean getBit2() {
-			return bit1;
+			return bit2;
 		}
 
 		public boolean getBit3() {
-			return bit1;
+			return bit3;
 		}
 	}
 
