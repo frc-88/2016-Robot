@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LowBarAutoNoShoot extends CommandGroup {
+public class AutoLowBarNoShoot extends CommandGroup {
     
-    public  LowBarAutoNoShoot() {
+    public  AutoLowBarNoShoot() {
 
     	//addSequential(new IntakeIn());
     	//addSequential(new ArmsDown());

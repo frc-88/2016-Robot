@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class HookDeliverySystemWithController extends Command {
+public class HDSWithController extends Command {
 
-    public HookDeliverySystemWithController() {
+    public HDSWithController() {
     	requires(Robot.HDS);
     }
 

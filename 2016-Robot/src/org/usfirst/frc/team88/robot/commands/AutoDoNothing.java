@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DoNothing extends CommandGroup {
+public class AutoDoNothing extends CommandGroup {
     
-    public  DoNothing() {
+    public  AutoDoNothing() {
 
     	addSequential(new IntakeIn());
     }
