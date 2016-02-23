@@ -41,7 +41,5 @@ public class RobotMap {
 	public static int hdsAngleMotorController = 7;
 
 	// Climber
-	// Changing to a motor
-	public static final int climberSolenoidIn = 0;
-	public static final int climberSolenoidOut = 1;
+	public static int climberMotor = 10;
 }
