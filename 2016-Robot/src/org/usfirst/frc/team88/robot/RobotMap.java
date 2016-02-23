@@ -44,4 +44,9 @@ public class RobotMap {
 // Shooter ???
 
 // CatABuster ???	
+	
+// Lights
+	public static final int lightsDigitalOut1 = 0;
+	public static final int lightsDigitalOut2 = 1;
+	public static final int lightsDigitalOut3 = 2;
 }
