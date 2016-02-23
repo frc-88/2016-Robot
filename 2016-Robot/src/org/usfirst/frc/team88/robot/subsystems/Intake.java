@@ -67,6 +67,10 @@ public class Intake extends Subsystem {
 		return shooterTalon.getSpeed();
 	}
 	
+	public double getShooterSpeedPercent() {
+		return shooterTalon.getSpeed() / SHOOTER_SPEED;
+	}
+	
 	public boolean isBoulderInHolder() {
 		return getBoulderHolderDistance() < LOADED_DISTANCE;
 	}
