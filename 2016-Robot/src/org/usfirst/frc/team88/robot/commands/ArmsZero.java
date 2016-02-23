@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArmZero extends Command {
+public class ArmsZero extends Command {
 
-    public ArmZero() {
+    public ArmsZero() {
     	requires(Robot.arms);
     }
 

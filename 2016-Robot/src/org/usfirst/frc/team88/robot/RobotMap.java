@@ -1,4 +1,5 @@
 package org.usfirst.frc.team88.robot;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -7,41 +8,40 @@ package org.usfirst.frc.team88.robot;
  */
 public class RobotMap {
 
-// Drive
+	// Drive
 	// encoders on masters
-	public static int driveLeftMaster=1;
-	public static int driveLeftSlave=2;
+	public static int driveLeftMaster = 1;
+	public static int driveLeftSlave = 2;
 
-	public static int driveRightMaster=6;
-	public static int driveRightSlave=8;
+	public static int driveRightMaster = 6;
+	public static int driveRightSlave = 8;
 
-// Intake
+	// Intake
+	// encoder on shooterMotor to know when it is up to speed
+	// light sensor switch to know when boulder is in the holder
 	public static int intakeMotor = 4;
 	public static int shooterMotor = 3;
-    // light sensor switch to known when boulder is in the nest
 	public static int boulderHolder = 0;
-	public static int upperNestSensor = 1;
-	
-// Arms
-	public static int armMotorController = 9;
-	// encoder to know angle of arms
 
-// HDS - Hook Delivery System
+	// Arms
+	// encoder to know angle of arms
+	// limit switch for reverse limit and to zero encoder
+	public static int armMotorController = 9;
+
+	// Camera
+	public static String cameraName = "cam0";
+
+	// Lights
+	public static final int lightsDigitalOut1 = 0;
+	public static final int lightsDigitalOut2 = 1;
+	public static final int lightsDigitalOut3 = 2;
+
+	// HDS - Hook Delivery System
 	public static int hdsElevatorMotorController = 5;
 	public static int hdsAngleMotorController = 7;
-	// switch to determine if hook is on bar, limit switch? 
-	// encoder on angle motor
-	
-// Climber
-    public static final int climberSolenoidIn = 0;
-    public static final int climberSolenoidOut = 1;
-	// some mechanism to release clock springs, solenoid?
-	// or, alternatively, one motor to run winch
-	
-// Camera
-	public static String cameraName = "cam0";
-	
-// Shooter ???
 
-// CatABuster ???	
+	// Climber
+	// Changing to a motor
+	public static final int climberSolenoidIn = 0;
+	public static final int climberSolenoidOut = 1;
 }
