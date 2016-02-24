@@ -2,6 +2,7 @@ package org.usfirst.frc.team88.robot.subsystems;
 
 import org.usfirst.frc.team88.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,14 +12,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
     
-	private final DoubleSolenoid releaseSolenoid;
+	private final CANTalon climberTalon;
 	
+	private final double speed;
 	private  boolean enabled;
 
 	public Climber(){
-    	releaseSolenoid = new DoubleSolenoid(RobotMap.climberSolenoidIn, RobotMap.climberSolenoidOut);
-    	releaseSolenoid.set(Value.kReverse);
-    	
+		
+		climberTalon = new CANTalon(RobotMap.climberMotor);
+		
+		speed = 0.5;
     	enabled = false;
 	}
 	
@@ -32,12 +35,12 @@ public class Climber extends Subsystem {
 	
 	public void fire(){
 		if(enabled){
-			releaseSolenoid.set(Value.kForward);
+			climberTalon.set(speed);
 		}
 	}
-
-	public void unfire(){
-		releaseSolenoid.set(Value.kReverse);
+	
+	public void unFire(){
+		climberTalon.set(0);
 	}
 
     public void initDefaultCommand() {

@@ -26,6 +26,8 @@ public class IntakeUpdateSmartDashboard extends Command {
 
     	if (Robot.intake.isShooterReady()) {
     		Robot.oi.rumbleOperatorLeft(1.0f);
+    	} else {
+    		Robot.oi.rumbleOperatorLeft(0.0f);
     	}
     }
 
