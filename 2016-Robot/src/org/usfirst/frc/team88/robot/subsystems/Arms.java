@@ -15,7 +15,7 @@ public class Arms extends Subsystem {
 	private final CANTalon armTalon;
 	private boolean armZeroed;
 	
-	private final static double FORWARD_LIMIT = 99999;
+	private final static double FORWARD_LIMIT = 3000000;
 	private final static double BEST_INTAKE = 99999;
 
 	public Arms(){
@@ -27,7 +27,7 @@ public class Arms extends Subsystem {
 	}
 	
 	public void move(double speed){
-		if (armTalon.isRevLimitSwitchClosed()) {
+		if (armTalon.isRevLimitSwitchClosed() && speed < 0.0) {
 			armTalon.set(0);
 			armTalon.setPosition(0);
 			armTalon.setForwardSoftLimit(FORWARD_LIMIT);

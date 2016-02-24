@@ -16,7 +16,11 @@ public class Intake extends Subsystem {
 	private final static double SHOOTER_I = 0.0; 
 	private final static double SHOOTER_D = 0.0;
 //	private final static double SHOOTER_SPEED = 0.65;
-	private final static double SHOOTER_SPEED = 100;
+	private final static double SHOOTER_SPEED = 600;
+	// shooter speed is in position change / 10ms
+	// shooter encoder is 128 count, so 512 ticks per rotation
+	// so 512 would be 1 rotation per 10ms, or 100 rotations per second
+	// or 6000 rpm
 	private final static double THRESHOLD_SPEED = SHOOTER_SPEED * 0.05;
 
 	private final static double LOADED_DISTANCE = 1.4;
@@ -57,8 +61,8 @@ public class Intake extends Subsystem {
 	}
 	
 	public boolean isShooterReady(){	
-		return ((SHOOTER_SPEED - THRESHOLD_SPEED <= shooterTalon.getSpeed()) && 
-				(SHOOTER_SPEED + THRESHOLD_SPEED >= shooterTalon.getSpeed()));
+		return ( ( ( SHOOTER_SPEED - THRESHOLD_SPEED ) <= ( shooterTalon.getSpeed() * 10 ) ) && 
+				 ( ( SHOOTER_SPEED + THRESHOLD_SPEED ) >= ( shooterTalon.getSpeed() * 10 ) ) );
 	}
 
 	public double getShooterSpeed() {
@@ -69,7 +73,7 @@ public class Intake extends Subsystem {
 	}
 	
 	public double getShooterSpeedPercent() {
-		return shooterTalon.getSpeed() / SHOOTER_SPEED;
+		return ( shooterTalon.getSpeed() * 10 ) / SHOOTER_SPEED;
 	}
 	
 	public boolean isBoulderInHolder() {
