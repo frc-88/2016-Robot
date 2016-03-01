@@ -35,6 +35,8 @@ public class RobotMap {
 	public static final int lightsDigitalOut1 = 0;
 	public static final int lightsDigitalOut2 = 1;
 	public static final int lightsDigitalOut3 = 2;
+	
+	public static final int lightsAnalogOut = 1;
 
 	// HDS - Hook Delivery System
 	public static int hdsElevatorMotorController = 5;
