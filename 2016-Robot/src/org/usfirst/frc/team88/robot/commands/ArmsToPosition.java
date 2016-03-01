@@ -8,19 +8,39 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArmsZero extends Command {
+public class ArmsToPosition extends Command {
+	private double target;
+	private boolean moveUp;
 	private double stillCount;
 	private double lastPosition;
 	private boolean done;
 
-	public ArmsZero() {
+	public ArmsToPosition(double position) {
 		requires(Robot.arms);
+
+		target = position;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		done = false;
-		Robot.arms.move(-Arms.AUTO_SPEED / 2.0);
+		double position = Robot.arms.getPosition();
+
+		stillCount = 0;
+		if (!Robot.arms.isZeroed()) {
+			done = true;
+		} else {
+			done = false;
+
+			if (position > target) {
+				moveUp = true;
+				Robot.arms.move(-Arms.AUTO_SPEED);
+			} else if (position < target) {
+				moveUp = false;
+				Robot.arms.move(Arms.AUTO_SPEED);
+			} else {
+				done = true;
+			}
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,7 +51,11 @@ public class ArmsZero extends Command {
 	protected boolean isFinished() {
 		double position = Robot.arms.getPosition();
 
-		if (Robot.arms.isZeroed()) {
+		if (!done && moveUp && ((position <= target) || Robot.arms.atRevLimit())) {
+			done = true;
+		}
+
+		if (!done && !moveUp && ((position >= target) || Robot.arms.atFwdLimit())) {
 			done = true;
 		}
 
