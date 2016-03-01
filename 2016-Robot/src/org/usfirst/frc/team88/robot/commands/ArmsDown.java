@@ -1,6 +1,7 @@
 package org.usfirst.frc.team88.robot.commands;
 
 import org.usfirst.frc.team88.robot.Robot;
+import org.usfirst.frc.team88.robot.subsystems.Arms;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ArmsDown extends Command {
-
+	private double stillCount;
+	private double lastPosition;
 	private boolean done;
 	
     public ArmsDown() {
@@ -20,7 +22,8 @@ public class ArmsDown extends Command {
     	if (!Robot.arms.isZeroed()) {
     		done = true;
     	} else {
-    		Robot.arms.move(0.5);
+    		done = false;
+    		Robot.arms.move(Arms.AUTO_SPEED);
     	}
     }
     
@@ -31,15 +34,32 @@ public class ArmsDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done || Robot.arms.atFwdLimit();
+		double position = Robot.arms.getPosition();
+
+		if (Robot.arms.atFwdLimit()) {
+			done = true;
+		}
+
+		// stop if the encoder isn't changing and we're moving
+		if (position == lastPosition) {
+			if (++stillCount > 5) {
+				done = true;
+			}
+		} else {
+			lastPosition = position;
+		}
+
+		return done;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+		Robot.arms.move(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+		Robot.arms.move(0);
     }
 }

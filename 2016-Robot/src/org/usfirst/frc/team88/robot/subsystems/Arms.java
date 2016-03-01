@@ -15,8 +15,12 @@ public class Arms extends Subsystem {
 	private final CANTalon armTalon;
 	private boolean armZeroed;
 	
-	private final static double FORWARD_LIMIT = 3000000;
-	private final static double BEST_INTAKE = 99999;
+	public final static double POS_FORWARD_LIMIT = 3000000;
+	public final static double POS_CDF = 99999;
+	public final static double POS_INTAKE = 77777;
+	public final static double POS_PORTCULLIS = 55555;
+	public final static double POS_REVERSE_LIMIT = 0;
+	public final static double AUTO_SPEED = 0.5;
 
 	public Arms(){
 		armTalon = new CANTalon(RobotMap.armMotorController);
@@ -30,7 +34,7 @@ public class Arms extends Subsystem {
 		if (armTalon.isRevLimitSwitchClosed() && speed < 0.0) {
 			armTalon.set(0);
 			armTalon.setPosition(0);
-			armTalon.setForwardSoftLimit(FORWARD_LIMIT);
+			armTalon.setForwardSoftLimit(POS_FORWARD_LIMIT);
 			armTalon.enableForwardSoftLimit(true);
 			armZeroed = true;
 		} else {
@@ -54,7 +58,11 @@ public class Arms extends Subsystem {
 	}
 	
 	public boolean atFwdLimit() {
-		return armTalon.getEncPosition() >= FORWARD_LIMIT;
+		return armTalon.getEncPosition() >= POS_FORWARD_LIMIT;
+	}
+	
+	public double getPosition() {
+		return armTalon.getEncPosition();
 	}
 	
     public void initDefaultCommand() {
