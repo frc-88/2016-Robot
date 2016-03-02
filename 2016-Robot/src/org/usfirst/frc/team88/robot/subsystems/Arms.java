@@ -15,10 +15,9 @@ public class Arms extends Subsystem {
 	private final CANTalon armTalon;
 	private boolean armZeroed;
 	
-	public final static double POS_FORWARD_LIMIT = 3000000;
-	public final static double POS_CDF = 99999;
-	public final static double POS_INTAKE = 77777;
-	public final static double POS_PORTCULLIS = 55555;
+	public final static double POS_FORWARD_LIMIT = 393000;
+	public final static double POS_CDF = 150000;
+	public final static double POS_INTAKE = 260000;
 	public final static double POS_REVERSE_LIMIT = 0;
 	public final static double AUTO_SPEED = 0.5;
 
