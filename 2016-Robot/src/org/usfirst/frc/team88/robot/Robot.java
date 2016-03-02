@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team88.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
+import org.usfirst.frc.team88.robot.commands.ArmsDown;
+import org.usfirst.frc.team88.robot.commands.ArmsZero;
 import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
@@ -48,9 +50,9 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		intake = new Intake();
 		arms = new Arms();
-		climber = new Climber();
-		HDS = new HookDeliverySystem();
-		lights = new Lights();
+		//climber = new Climber();
+		//HDS = new HookDeliverySystem();
+		//lights = new Lights();
 
 		oi = new OI();
 
@@ -70,6 +72,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Do Nothing", new AutoDoNothing());
 		SmartDashboard.putData("Backwards 3m", new AutoBack3Meters());
 		SmartDashboard.putData("Low Bar No Shoot", new AutoLowBarNoShoot());
+		SmartDashboard.putData("ArmsZero", new ArmsZero());
+		SmartDashboard.putData("ArmsDown", new ArmsDown());
 	}
 
 	/**

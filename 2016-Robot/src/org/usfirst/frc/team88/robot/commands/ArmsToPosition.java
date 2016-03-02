@@ -61,7 +61,7 @@ public class ArmsToPosition extends Command {
 
 		// stop if the encoder isn't changing and we're moving
 		if (position == lastPosition) {
-			if (++stillCount > 5) {
+			if (++stillCount > 50) {
 				done = true;
 			}
 		} else {

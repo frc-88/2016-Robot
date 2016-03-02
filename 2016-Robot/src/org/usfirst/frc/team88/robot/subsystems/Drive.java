@@ -28,7 +28,7 @@ public class Drive extends Subsystem {
 	private final static double SPEED_D = 0.0;
 	private final static double SPEED_F = 0.0;
 	private final static int SPEED_IZONE = 0;
-	private final static double SPEED_RAMPRATE = 0.0;
+	private final static double SPEED_RAMPRATE = 1.0;
 	private final static int SPEED_PROFILE = 0;
 
 	private final static double POSITION_P = 1.2;
@@ -63,6 +63,7 @@ public class Drive extends Subsystem {
 		rTalonSlave.set(rTalonMaster.getDeviceID());
 
 		setControlMode(CANTalon.TalonControlMode.Speed);
+		resetPosition();
 	}
 
 	public double getLeftPosition(){
@@ -73,6 +74,11 @@ public class Drive extends Subsystem {
 		return rTalonMaster.getEncPosition();
 	}
 
+	public void resetPosition() {
+		lTalonMaster.setPosition(0);
+		rTalonMaster.setPosition(0);
+	}
+	
 	public void set(double left, double right) {
 		SmartDashboard.putNumber("Left Input: ", left);
 		SmartDashboard.putNumber("Right Input: ", right);

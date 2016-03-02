@@ -37,7 +37,7 @@ public class ArmsZero extends Command {
 
 		// stop if the encoder isn't changing and we're moving
 		if (position == lastPosition) {
-			if (++stillCount > 5) {
+			if (++stillCount > 100) {
 				done = true;
 			}
 		} else {

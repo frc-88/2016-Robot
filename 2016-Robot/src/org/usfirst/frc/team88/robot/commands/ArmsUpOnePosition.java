@@ -29,20 +29,18 @@ public class ArmsUpOnePosition extends Command {
 		} else {
 			done = false;
 
-			if (position < Arms.POS_PORTCULLIS) {
-				target = Arms.POS_PORTCULLIS;
-			} else if (position < Arms.POS_INTAKE) {
+			if (position > Arms.POS_INTAKE) {
 				target = Arms.POS_INTAKE;
-			} else if (position < Arms.POS_CDF) {
+			} else if (position > Arms.POS_CDF) {
 				target = Arms.POS_CDF;
-			} else if (position < Arms.POS_FORWARD_LIMIT) {
-				target = Arms.POS_FORWARD_LIMIT;
+			} else if (position > Arms.POS_REVERSE_LIMIT) {
+				target = Arms.POS_REVERSE_LIMIT;
 			} else {
 				done = true;
 			}
 
 			if (!done) {
-				Robot.arms.move(Arms.AUTO_SPEED);
+				Robot.arms.move(-Arms.AUTO_SPEED);
 			}
 		}
 	}
@@ -55,13 +53,13 @@ public class ArmsUpOnePosition extends Command {
 	protected boolean isFinished() {
 		double position = Robot.arms.getPosition();
 
-		if (!done && ((position >= target) || Robot.arms.atFwdLimit())) {
+		if (!done && ((position <= target) || Robot.arms.atRevLimit())) {
 			done = true;
 		}
 
 		// stop if the encoder isn't changing and we're moving
 		if (position == lastPosition) {
-			if (++stillCount > 5) {
+			if (++stillCount > 50) {
 				done = true;
 			}
 		} else {
