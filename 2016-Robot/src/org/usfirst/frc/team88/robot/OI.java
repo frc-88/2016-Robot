@@ -84,9 +84,9 @@ public class OI {
 //		driverButtonStart.whenReleased(new ClimberDisable());
 //		driverButtonLeftBumper.whenPressed(new DrivePark());
 		driverButtonRightBumper.whenPressed(new DriveWithController());
-		driverButtonA.whenPressed(new DriveClosedLoop());
-		driverButtonB.whenPressed(new DriveOpenLoop());
-		driverButtonX.whenPressed(new AutoBack3Meters());
+//		driverButtonA.whenPressed(new DriveClosedLoop());
+//		driverButtonB.whenPressed(new DriveOpenLoop());
+//		driverButtonX.whenPressed(new AutoBack3Meters());
 
 		operatorButtonA.whenPressed(new IntakeIn());
 		operatorButtonA.whenReleased(new IntakeStop());
