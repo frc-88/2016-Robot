@@ -57,7 +57,8 @@ public class LightsShow extends Command {
 
 //		Robot.lights.setMode(LightsMode.BlueJuggle);
 
-		Robot.lights.setMode(LightsMode.RedAnalog);
+//		Robot.lights.setMode(LightsMode.RedAnalog);
+		Robot.lights.setSelectedMode();
 	
 		Robot.lights.setAnalogOut(Robot.oi.getDriverRightZAxis());
 		SmartDashboard.putNumber("stick", Robot.oi.getDriverRightZAxis());

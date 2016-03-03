@@ -7,6 +7,7 @@ import org.usfirst.frc.team88.robot.commands.LightsShow;
 import edu.wpi.first.wpilibj.AnalogOutput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -17,7 +18,8 @@ public class Lights extends Subsystem {
 	private DigitalOutput digitalOut1, digitalOut2, digitalOut3;
 	private AnalogOutput analogOut;
 	private LightsMode currentMode;
-
+	private SendableChooser lightsMode;
+	
 	private double ARDUINO_MAX_VOLTAGE = 5.0;
 
 	public Lights() {
@@ -27,6 +29,17 @@ public class Lights extends Subsystem {
 
 		analogOut = new AnalogOutput(RobotMap.lightsAnalogOut);
 		
+		lightsMode = new SendableChooser();
+		lightsMode.addDefault("Rainbow", LightsMode.Rainbow);
+		lightsMode.addObject("RedJuggle", LightsMode.RedJuggle);
+		lightsMode.addObject("BlueJuggle", LightsMode.BlueJuggle);
+		lightsMode.addObject("GreenJuggle", LightsMode.GreenJuggle);
+		lightsMode.addObject("Disco", LightsMode.Disco);
+		lightsMode.addObject("RedAnalog", LightsMode.RedAnalog);
+		lightsMode.addObject("BlueAnalog", LightsMode.BlueAnalog);
+		lightsMode.addObject("Nothing", LightsMode.Nothing);
+		SmartDashboard.putData("Lights Mode", lightsMode);
+
 		currentMode = LightsMode.Nothing;
 		setMode(currentMode);
 	}
@@ -47,6 +60,10 @@ public class Lights extends Subsystem {
 		return currentMode;
 	}
 
+	public void setSelectedMode() {
+		setMode((LightsMode)lightsMode.getSelected());
+	}
+	
 	public void setAnalogOut(double output) {
 		output = Math.abs(output);
 		if (output > 1) {
