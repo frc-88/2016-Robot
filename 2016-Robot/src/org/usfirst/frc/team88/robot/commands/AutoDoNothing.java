@@ -10,6 +10,7 @@ public class AutoDoNothing extends CommandGroup {
     public  AutoDoNothing() {
 
     	addSequential(new IntakeIn());
-    	addParallel(new ArmsZero());
+    	addSequential(new ArmsZero());
+    	addSequential(new IntakeStop());
     }
 }

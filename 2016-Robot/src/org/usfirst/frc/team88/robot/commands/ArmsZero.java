@@ -20,7 +20,7 @@ public class ArmsZero extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		done = false;
-		Robot.arms.move(-Arms.AUTO_SPEED / 2.0);
+		Robot.arms.move(-Arms.AUTO_SPEED / 1.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -38,10 +38,12 @@ public class ArmsZero extends Command {
 		// stop if the encoder isn't changing and we're moving
 		if (position == lastPosition) {
 			if (++stillCount > 100) {
+				Robot.arms.zero();
 				done = true;
 			}
 		} else {
 			lastPosition = position;
+			stillCount = 0;
 		}
 
 		return done;
