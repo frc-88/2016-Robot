@@ -31,11 +31,7 @@ public class Arms extends Subsystem {
 	
 	public void move(double speed){
 		if (armTalon.isRevLimitSwitchClosed() && speed < 0.0) {
-			armTalon.set(0);
-			armTalon.setPosition(0);
-			armTalon.setForwardSoftLimit(POS_FORWARD_LIMIT);
-			armTalon.enableForwardSoftLimit(true);
-			armZeroed = true;
+			zero();
 		} else {
 			armTalon.set(speed);
 		}
@@ -50,6 +46,14 @@ public class Arms extends Subsystem {
 
 	public boolean isZeroed() {
 		return armZeroed;
+	}
+	
+	public void zero() {
+		armTalon.set(0);
+		armTalon.setPosition(0);
+		armTalon.setForwardSoftLimit(POS_FORWARD_LIMIT);
+		armTalon.enableForwardSoftLimit(true);
+		armZeroed = true;
 	}
 	
 	public boolean atRevLimit() {

@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team88.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
 import org.usfirst.frc.team88.robot.commands.ArmsDown;
 import org.usfirst.frc.team88.robot.commands.ArmsZero;
 import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
+import org.usfirst.frc.team88.robot.commands.AutoBack3MetersFast;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -50,9 +52,9 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		intake = new Intake();
 		arms = new Arms();
-		//climber = new Climber();
-		//HDS = new HookDeliverySystem();
-		//lights = new Lights();
+		climber = new Climber();
+		HDS = new HookDeliverySystem();
+		lights = new Lights();
 
 		oi = new OI();
 
@@ -66,12 +68,15 @@ public class Robot extends IterativeRobot {
 		autoSelector.addDefault("Do Nothing", new AutoDoNothing());
 		autoSelector.addObject("Backwards 3m", new AutoBack3Meters());
 		autoSelector.addObject("Low Bar No Shoot", new AutoLowBarNoShoot());
+		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
 		SmartDashboard.putData("Do Nothing", new AutoDoNothing());
 		SmartDashboard.putData("Backwards 3m", new AutoBack3Meters());
+		SmartDashboard.putData("FAST Backwards 3m", new AutoBack3MetersFast());
 		SmartDashboard.putData("Low Bar No Shoot", new AutoLowBarNoShoot());
+		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
 		SmartDashboard.putData("ArmsZero", new ArmsZero());
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
 	}
@@ -82,7 +87,11 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		intake.stopShooter();
+		oi.rumbleDriverLeft(0f);
+		oi.rumbleDriverRight(0f);
+		oi.rumbleOperatorLeft(0f);
+		oi.rumbleOperatorRight(0f);
 	}
 
 	public void disabledPeriodic() {
@@ -121,6 +130,11 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		intake.stopShooter();
+		oi.rumbleDriverLeft(0f);
+		oi.rumbleDriverRight(0f);
+		oi.rumbleOperatorLeft(0f);
+		oi.rumbleOperatorRight(0f);
 	}
 
 	/**

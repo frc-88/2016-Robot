@@ -42,11 +42,12 @@ public class ArmsDown extends Command {
 
 		// stop if the encoder isn't changing and we're moving
 		if (position == lastPosition) {
-			if (++stillCount > 50) {
+			if (++stillCount > 100) {
 				done = true;
 			}
 		} else {
 			lastPosition = position;
+			stillCount = 0;
 		}
 
 		return done;

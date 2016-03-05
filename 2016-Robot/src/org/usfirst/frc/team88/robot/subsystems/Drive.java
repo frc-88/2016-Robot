@@ -44,6 +44,7 @@ public class Drive extends Subsystem {
 		lTalonMaster = new CANTalon(RobotMap.driveLeftMaster);
 		lTalonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		lTalonMaster.reverseSensor(true);
+		lTalonMaster.enableBrakeMode(true);
 		lTalonMaster.setPID(SPEED_P, SPEED_I, SPEED_D, SPEED_F, SPEED_IZONE, SPEED_RAMPRATE, SPEED_PROFILE);
 		lTalonMaster.setPID(POSITION_P, POSITION_I, POSITION_D, POSITION_F, POSITION_IZONE, POSITION_RAMPRATE, POSITION_PROFILE);
 
@@ -55,6 +56,7 @@ public class Drive extends Subsystem {
 		rTalonMaster = new CANTalon(RobotMap.driveRightMaster);
 		rTalonMaster.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		rTalonMaster.reverseSensor(true);
+		rTalonMaster.enableBrakeMode(true);
 		rTalonMaster.setPID(SPEED_P, SPEED_I, SPEED_D, SPEED_F, SPEED_IZONE, SPEED_RAMPRATE, SPEED_PROFILE);
 		rTalonMaster.setPID(POSITION_P, POSITION_I, POSITION_D, POSITION_F, POSITION_IZONE, POSITION_RAMPRATE, POSITION_PROFILE);
 

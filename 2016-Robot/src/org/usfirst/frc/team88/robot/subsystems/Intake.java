@@ -40,6 +40,7 @@ public class Intake extends Subsystem {
 
 		shooterTalon = new CANTalon(RobotMap.shooterMotor);
 		shooterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		shooterTalon.reverseSensor(true);
 		shooterTalon.setPosition(0);
 		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D);
 		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
@@ -57,7 +58,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void stopShooter() {
-		shooterTalon.set(0.0);
+		shooterTalon.set(0);
 	}
 	
 	public boolean isShooterReady(){	
