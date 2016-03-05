@@ -16,7 +16,7 @@ public class Intake extends Subsystem {
 	private final static double SHOOTER_I = 0.0; 
 	private final static double SHOOTER_D = 0.0;
 //	private final static double SHOOTER_SPEED = 0.65;
-	private final static double SHOOTER_SPEED = 600;
+	private final static double SHOOTER_SPEED = 400;
 	// shooter speed is in position change / 10ms
 	// shooter encoder is 128 count, so 512 ticks per rotation
 	// so 512 would be 1 rotation per 10ms, or 100 rotations per second
@@ -57,7 +57,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void stopShooter() {
-		shooterTalon.set(0.0);
+		shooterTalon.set(0);
 	}
 	
 	public boolean isShooterReady(){	

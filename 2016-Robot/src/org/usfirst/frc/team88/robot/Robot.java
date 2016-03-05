@@ -87,7 +87,11 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		intake.stopShooter();
+		oi.rumbleDriverLeft(0f);
+		oi.rumbleDriverRight(0f);
+		oi.rumbleOperatorLeft(0f);
+		oi.rumbleOperatorRight(0f);
 	}
 
 	public void disabledPeriodic() {
@@ -126,6 +130,11 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		intake.stopShooter();
+		oi.rumbleDriverLeft(0f);
+		oi.rumbleDriverRight(0f);
+		oi.rumbleOperatorLeft(0f);
+		oi.rumbleOperatorRight(0f);
 	}
 
 	/**
