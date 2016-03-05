@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		HDS = new HookDeliverySystem();
 		lights = new Lights();
-		lidar = new Lidar(I2C.Port.kMXP);
+		lidar = new Lidar(I2C.Port.kOnboard);
 		
 		oi = new OI();
 
