@@ -18,7 +18,7 @@ public class LightsShow extends Command {
 	}
 
 	DriverStation ds;
-	
+
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		ds = DriverStation.getInstance();
@@ -26,43 +26,28 @@ public class LightsShow extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-//		if (ds.isAutonomous()) {
-//			// green lights in autonomous
-//			Robot.lights.setMode(Lights.Mode.GreenJuggle);
-//		} else if (ds.isOperatorControl()) {
-//			// disco for last 20 seconds
-//			// alliance colors the rest of the time
-//			// track the shooter while it is moving
-//			if (ds.getMatchTime() < 20) {
-//				Robot.lights.setMode(Lights.Mode.Disco);
-////			} else if (Robot.intake.getShooterSpeedPercent() > 0.05) {
-////				Robot.lights.setAnalogOut(Robot.intake.getShooterSpeedPercent());
-//				} else if (Robot.oi.getDriverRightZAxis() > 0.05) {
-//				Robot.lights.setAnalogOut(Robot.oi.getDriverRightZAxis());
-//				if (ds.getAlliance() == DriverStation.Alliance.Blue) {
-//					Robot.lights.setMode(Lights.Mode.BlueAnalog);
-//				} else {
-//					Robot.lights.setMode(Lights.Mode.RedAnalog);
-//				}
-//			} else {
-//				if (ds.getAlliance() == DriverStation.Alliance.Blue) {
-//					Robot.lights.setMode(Lights.Mode.BlueJuggle);
-//				} else {
-//					Robot.lights.setMode(Lights.Mode.RedJuggle);
-//				}
-//			}
-//		} else if (ds.isDisabled()) {
-//			Robot.lights.setMode(Lights.Mode.Rainbow);
-//		}
+		if (ds.isAutonomous()) {
+			// green lights in autonomous
+			Robot.lights.setMode(LightsMode.GreenJuggle);
+		} else if (ds.isOperatorControl()) {
+			// rainbow for last 20 seconds
+			// alliance colors the rest of the time
+			if (ds.getMatchTime() < 20) {
+				Robot.lights.setMode(LightsMode.Rainbow);
+			} else if (ds.getAlliance() == DriverStation.Alliance.Blue) {
+				Robot.lights.setMode(LightsMode.BlueJuggle);
+			} else {
+				Robot.lights.setMode(LightsMode.RedJuggle);
+			}
+		} else if (ds.isDisabled()) {
+			Robot.lights.setMode(LightsMode.Rainbow);
+		}
 
-//		Robot.lights.setMode(LightsMode.BlueJuggle);
+//		 Robot.lights.setSelectedMode();
+		//
+		// Robot.lights.setAnalogOut(Robot.oi.getDriverRightZAxis());
+		// SmartDashboard.putNumber("stick", Robot.oi.getDriverRightZAxis());
 
-//		Robot.lights.setMode(LightsMode.RedAnalog);
-		Robot.lights.setSelectedMode();
-	
-		Robot.lights.setAnalogOut(Robot.oi.getDriverRightZAxis());
-		SmartDashboard.putNumber("stick", Robot.oi.getDriverRightZAxis());
-	
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
