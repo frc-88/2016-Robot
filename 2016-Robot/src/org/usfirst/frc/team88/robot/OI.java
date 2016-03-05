@@ -8,6 +8,7 @@ import org.usfirst.frc.team88.robot.commands.DriveOpenLoop;
 import org.usfirst.frc.team88.robot.commands.DrivePark;
 import org.usfirst.frc.team88.robot.commands.DriveWithController;
 import org.usfirst.frc.team88.robot.commands.ShooterFire;
+import org.usfirst.frc.team88.robot.commands.ShooterFire2;
 import org.usfirst.frc.team88.robot.commands.IntakeIn;
 import org.usfirst.frc.team88.robot.commands.IntakeOut;
 import org.usfirst.frc.team88.robot.commands.IntakeStop;
@@ -87,7 +88,7 @@ public class OI {
 		operatorButtonB.whenPressed(new IntakeOut());
 		operatorButtonB.whenReleased(new IntakeStop());
 		operatorButtonX.whenPressed(new ShooterPrepare());
-		operatorButtonY.whenPressed(new ShooterFire());
+		operatorButtonY.whenPressed(new ShooterFire2());
 		operatorButtonStart.whenPressed(new ShooterStop());
 		operatorButtonBack.whenPressed(new ShooterStop());
 		operatorButtonLeftBumper.whenPressed(new ArmsUpOnePosition());
