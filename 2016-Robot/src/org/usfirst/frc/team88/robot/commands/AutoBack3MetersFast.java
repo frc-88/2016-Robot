@@ -7,15 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ClimberFire extends Command {
-
-    public ClimberFire() {
-    	requires(Robot.climber);
+public class AutoBack3MetersFast extends Command {
+	private final static double DISTANCE = 5000.0;
+	
+    public AutoBack3MetersFast() {
+    	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.fire();
+    	Robot.drive.resetPosition();
+    	Robot.drive.set(0.36, 0.13);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,15 +26,17 @@ public class ClimberFire extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return (Math.abs(Robot.drive.getLeftPosition()) > DISTANCE || Math.abs(Robot.drive.getRightPosition()) > DISTANCE);
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drive.set(0.0, 0.0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.drive.set(0.0, 0.0);
     }
 }

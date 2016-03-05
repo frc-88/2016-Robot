@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		intake = new Intake();
 		arms = new Arms();
-		//climber = new Climber();
+		climber = new Climber();
 		//HDS = new HookDeliverySystem();
 		lights = new Lights();
 

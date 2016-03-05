@@ -3,10 +3,6 @@ package org.usfirst.frc.team88.robot;
 import org.usfirst.frc.team88.robot.commands.ArmsDownOnePosition;
 import org.usfirst.frc.team88.robot.commands.ArmsUpOnePosition;
 import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
-import org.usfirst.frc.team88.robot.commands.ClimberDisable;
-import org.usfirst.frc.team88.robot.commands.ClimberEnable;
-import org.usfirst.frc.team88.robot.commands.ClimberFire;
-import org.usfirst.frc.team88.robot.commands.ClimberUnfire;
 import org.usfirst.frc.team88.robot.commands.DriveClosedLoop;
 import org.usfirst.frc.team88.robot.commands.DriveOpenLoop;
 import org.usfirst.frc.team88.robot.commands.DrivePark;
@@ -80,8 +76,6 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 
 	public OI() {
-//		driverButtonStart.whenPressed(new ClimberEnable());
-//		driverButtonStart.whenReleased(new ClimberDisable());
 //		driverButtonLeftBumper.whenPressed(new DrivePark());
 		driverButtonRightBumper.whenPressed(new DriveWithController());
 //		driverButtonA.whenPressed(new DriveClosedLoop());
