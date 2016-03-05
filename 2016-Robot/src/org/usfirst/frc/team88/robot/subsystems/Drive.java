@@ -1,5 +1,6 @@
 package org.usfirst.frc.team88.robot.subsystems;
 
+import org.usfirst.frc.team88.robot.Robot;
 import org.usfirst.frc.team88.robot.RobotMap;
 import org.usfirst.frc.team88.robot.commands.DriveWithController;
 
@@ -153,6 +154,8 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Right Master Speed: ", -rTalonMaster.getSpeed());
 		SmartDashboard.putNumber("Right Slave Voltage: ", rTalonSlave.getOutputVoltage());
 		SmartDashboard.putNumber("Right Slave Current: ", rTalonSlave.getOutputCurrent());
+
+        SmartDashboard.putNumber("Lidar",Robot.lidar.getDistance());
 	}
 	
 }
