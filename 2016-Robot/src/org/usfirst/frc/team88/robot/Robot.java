@@ -1,6 +1,7 @@
 package org.usfirst.frc.team88.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -40,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static HookDeliverySystem HDS;
 	public static Lights lights;
 	public static CameraServer server;
+	public static Lidar lidar;
 
 	Command autonomousCommand;
 	SendableChooser autoSelector;
@@ -55,9 +57,12 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		HDS = new HookDeliverySystem();
 		lights = new Lights();
-
+		lidar = new Lidar(I2C.Port.kMXP);
+		
 		oi = new OI();
 
+		lidar.start();
+		
 		server = CameraServer.getInstance();
 		server.setQuality(50);
 		server.startAutomaticCapture(RobotMap.cameraName);
