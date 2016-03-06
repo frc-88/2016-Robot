@@ -19,6 +19,7 @@ public class Lights extends Subsystem {
 	private AnalogOutput analogOut;
 	private LightsMode currentMode;
 	private SendableChooser lightsMode;
+	public SendableChooser testChooser;
 	
 	private double ARDUINO_MAX_VOLTAGE = 5.0;
 
@@ -29,6 +30,11 @@ public class Lights extends Subsystem {
 
 		analogOut = new AnalogOutput(RobotMap.lightsAnalogOut);
 		
+		testChooser = new SendableChooser();
+		testChooser.addDefault("Match", false);
+		testChooser.addObject("Test", true);
+		SmartDashboard.putData("Lights Test", testChooser);
+				
 		lightsMode = new SendableChooser();
 		lightsMode.addDefault("Rainbow", LightsMode.Rainbow);
 		lightsMode.addObject("RedJuggle", LightsMode.RedJuggle);
