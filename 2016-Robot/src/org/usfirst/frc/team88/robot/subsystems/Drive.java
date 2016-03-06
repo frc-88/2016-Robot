@@ -23,16 +23,16 @@ public class Drive extends Subsystem {
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 	private CANTalon.TalonControlMode controlMode;
 	
-	private final static double MAX_SPEED = 1200;
-	private final static double SPEED_P = 1.2;
+	private final static double MAX_SPEED = 800;
+	private final static double SPEED_P = 0.4;
 	private final static double SPEED_I = 0.0;
 	private final static double SPEED_D = 0.0;
-	private final static double SPEED_F = 0.0;
+	private final static double SPEED_F = 1.3;
 	private final static int SPEED_IZONE = 0;
-	private final static double SPEED_RAMPRATE = 1.0;
+	private final static double SPEED_RAMPRATE = 3.0;
 	private final static int SPEED_PROFILE = 0;
 
-	private final static double POSITION_P = 1.2;
+	private final static double POSITION_P = 0.0;
 	private final static double POSITION_I = 0.0;
 	private final static double POSITION_D = 0.0;
 	private final static double POSITION_F = 0.0;
@@ -50,6 +50,7 @@ public class Drive extends Subsystem {
 		lTalonMaster.setPID(POSITION_P, POSITION_I, POSITION_D, POSITION_F, POSITION_IZONE, POSITION_RAMPRATE, POSITION_PROFILE);
 
 		lTalonSlave = new CANTalon(RobotMap.driveLeftSlave);
+		lTalonSlave.enableBrakeMode(true);
 		lTalonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		lTalonSlave.set(lTalonMaster.getDeviceID());
 
@@ -62,6 +63,7 @@ public class Drive extends Subsystem {
 		rTalonMaster.setPID(POSITION_P, POSITION_I, POSITION_D, POSITION_F, POSITION_IZONE, POSITION_RAMPRATE, POSITION_PROFILE);
 
 		rTalonSlave = new CANTalon(RobotMap.driveRightSlave);
+		rTalonSlave.enableBrakeMode(true);
 		rTalonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rTalonSlave.set(rTalonMaster.getDeviceID());
 

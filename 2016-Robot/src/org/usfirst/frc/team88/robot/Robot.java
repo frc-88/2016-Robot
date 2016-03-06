@@ -54,8 +54,8 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		intake = new Intake();
 		arms = new Arms();
-		climber = new Climber();
-		HDS = new HookDeliverySystem();
+		//climber = new Climber();
+		//HDS = new HookDeliverySystem();
 		lights = new Lights();
 		lidar = new Lidar(I2C.Port.kOnboard);
 		
