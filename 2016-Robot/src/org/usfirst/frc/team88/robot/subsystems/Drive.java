@@ -67,7 +67,7 @@ public class Drive extends Subsystem {
 		rTalonSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		rTalonSlave.set(rTalonMaster.getDeviceID());
 
-		setControlMode(CANTalon.TalonControlMode.Speed);
+		setControlMode(CANTalon.TalonControlMode.PercentVbus);
 		resetPosition();
 	}
 
