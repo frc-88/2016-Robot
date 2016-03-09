@@ -12,11 +12,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Intake extends Subsystem {
-	private final static double SHOOTER_P = 1.0;
+	private final static double SHOOTER_P = 0.5;
 	private final static double SHOOTER_I = 0.0; 
-	private final static double SHOOTER_D = 0.0;
+	private final static double SHOOTER_D = 0.05;
+	private final static double SHOOTER_F = 1.15;
+	private final static int SHOOTER_IZONE = 0;
+	private final static double SHOOTER_RAMPRATE = 3.0;
+	private final static int SHOOTER_PROFILE = 0;
+
 //	private final static double SHOOTER_SPEED = 0.65;
-	private final static double SHOOTER_SPEED = 600;
+	private final static double SHOOTER_SPEED = 1200;
 	// shooter speed is in position change / 10ms
 	// shooter encoder is 128 count, so 512 ticks per rotation
 	// so 512 would be 1 rotation per 10ms, or 100 rotations per second
@@ -42,7 +47,7 @@ public class Intake extends Subsystem {
 		shooterTalon.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		shooterTalon.reverseSensor(true);
 		shooterTalon.setPosition(0);
-		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D);
+		shooterTalon.setPID(SHOOTER_P, SHOOTER_I, SHOOTER_D, SHOOTER_F, SHOOTER_IZONE, SHOOTER_RAMPRATE,SHOOTER_PROFILE);
 		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
 //		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
@@ -67,7 +72,7 @@ public class Intake extends Subsystem {
 	}
 
 	public double getShooterSpeed() {
-		SmartDashboard.putNumber("Shooter speed: ", shooterTalon.getSpeed());
+		SmartDashboard.putNumber("Shooter speedx: ", shooterTalon.getSpeed());
 		SmartDashboard.putNumber("Shooter position: ", shooterTalon.getEncPosition());
 		
 		return shooterTalon.getSpeed();
