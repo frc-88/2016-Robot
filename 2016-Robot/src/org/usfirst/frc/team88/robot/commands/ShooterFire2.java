@@ -68,7 +68,7 @@ public class ShooterFire2 extends Command {
 		Robot.drive.set(0, 0);
 	}
 	
-	protected void adjustDistance() {
+	private void adjustDistance() {
     	prefs = Preferences.getInstance();
     	DISTANCE = prefs.getDouble("shooterDistance", 24.0);
 	}
