@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team88.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
 import org.usfirst.frc.team88.robot.commands.ArmsDown;
 import org.usfirst.frc.team88.robot.commands.ArmsZero;
 import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
@@ -84,6 +85,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
 		SmartDashboard.putData("ArmsZero", new ArmsZero());
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
+		SmartDashboard.putData("Rotate Left 90", new AutoRotateToAngle(-90));
 	}
 
 	/**
