@@ -3,16 +3,20 @@ package org.usfirst.frc.team88.robot.commands;
 import org.usfirst.frc.team88.robot.Robot;
 import org.usfirst.frc.team88.robot.subsystems.Intake;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
 public class ShooterFire2 extends Command {
+	
+	Preferences prefs;
+	
 	private int count;
 	private boolean fired;
 
-	private static final double DISTANCE = 24.0;
+	private static double DISTANCE = 24.0;
 	private static final int DELAY = 30; // number of 20ms seconds to wait
 										 // before ending after we fire
 
@@ -25,6 +29,7 @@ public class ShooterFire2 extends Command {
 	protected void initialize() {
 		count = 0;
 		fired = false;
+		adjustDistance();
 
 		Robot.drive.set(-0.1, -0.1);
 	}
@@ -61,5 +66,10 @@ public class ShooterFire2 extends Command {
 		Robot.intake.move(0);
 		Robot.intake.stopShooter();
 		Robot.drive.set(0, 0);
+	}
+	
+	protected void adjustDistance() {
+    	prefs = Preferences.getInstance();
+    	DISTANCE = prefs.getDouble("shooterDistance", 24.0);
 	}
 }
