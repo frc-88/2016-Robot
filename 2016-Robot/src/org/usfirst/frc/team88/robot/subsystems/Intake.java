@@ -106,7 +106,7 @@ public class Intake extends Subsystem {
     
     public void changeSpeed() {
     	prefs = Preferences.getInstance();
-    	SHOOTER_SPEED = prefs.getDouble("Shooter Speed", 1200);
+    	SHOOTER_SPEED = prefs.getDouble("shooterSpeed", 1200);
     }
 }
 
