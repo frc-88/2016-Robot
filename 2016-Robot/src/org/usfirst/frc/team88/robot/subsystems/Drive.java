@@ -8,25 +8,25 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Author: Nick Avtges
+ * defenses crumble
+ * underneath the power of 
+ *    gray pneumatic tires
  */
 
-// TODO:
-// implement park mode, test its behavior when robot is disabled
-// implement capability to easily switch between closed loop speed control
-// and open loop percentVbus control
-// test drive behavior with brake mode enabled
-
-public class Drive extends Subsystem {
+public class Drive extends Subsystem implements PIDOutput {
 
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
-	private AHRS navX;
 	private CANTalon.TalonControlMode controlMode;
+	public AHRS navX;
+	public PIDController turnController;
 
 	private final static double MAX_SPEED = 800;
 	private final static double SPEED_P = 0.4;
@@ -45,7 +45,14 @@ public class Drive extends Subsystem {
 	private final static double POSITION_RAMPRATE = 0.0;
 	private final static int POSITION_PROFILE = 1;
 
+	private final static double ROTATE_P = 0.0;
+	private final static double ROTATE_I = 0.0;
+	private final static double ROTATE_D = 0.0;
+	private final static double ROTATE_F = 0.0;
+	private final static double ROTATE_TOLERANCE = 2.0f;
+
 	public Drive() {
+		// instantiate NavX
 		try {
 			navX = new AHRS(SerialPort.Port.kMXP);
 		} catch (RuntimeException ex) {
@@ -82,6 +89,18 @@ public class Drive extends Subsystem {
 
 		setControlMode(CANTalon.TalonControlMode.PercentVbus);
 		resetPosition();
+
+		// set up turnController
+		turnController = new PIDController(ROTATE_P, ROTATE_I, ROTATE_D, ROTATE_F, navX, this);
+		turnController.setInputRange(-180.0f, 180.0f);
+		turnController.setOutputRange(-1.0, 1.0);
+		turnController.setAbsoluteTolerance(ROTATE_TOLERANCE);
+		turnController.setContinuous(true);
+
+		/* Add the PID Controller to the Test-mode dashboard, allowing manual */
+		/* tuning of the Turn Controller's P, I and D coefficients. */
+		/* Typically, only the P value needs to be modified. */
+		LiveWindow.addActuator("DriveSystem", "TurnController", turnController);
 	}
 
 	public double getLeftPosition() {
@@ -153,6 +172,12 @@ public class Drive extends Subsystem {
 
 	protected void initDefaultCommand() {
 		setDefaultCommand(new DriveWithController());
+	}
+
+	/* This function is invoked periodically by the PID Controller, */
+	/* based upon navX-MXP yaw angle input and PID Coefficients. */
+	public void pidWrite(double output) {
+		set(-output, output);
 	}
 
 	private void updateSmartDashboard() {
