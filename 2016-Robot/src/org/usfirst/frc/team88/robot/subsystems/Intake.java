@@ -5,6 +5,7 @@ import org.usfirst.frc.team88.robot.commands.IntakeUpdateSmartDashboard;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,6 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Intake extends Subsystem {
+	
+	Preferences prefs;
+	
 	private final static double SHOOTER_P = 0.5;
 	private final static double SHOOTER_I = 0.0; 
 	private final static double SHOOTER_D = 0.05;
@@ -21,7 +25,7 @@ public class Intake extends Subsystem {
 	private final static int SHOOTER_PROFILE = 0;
 
 //	private final static double SHOOTER_SPEED = 0.65;
-	private final static double SHOOTER_SPEED = 1200;
+	private static double SHOOTER_SPEED = 1200;
 	// shooter speed is in position change / 10ms
 	// shooter encoder is 128 count, so 512 ticks per rotation
 	// so 512 would be 1 rotation per 10ms, or 100 rotations per second
@@ -59,7 +63,9 @@ public class Intake extends Subsystem {
 	}
 	
 	public void startShooter() {
+		changeSpeed();
 		shooterTalon.set(SHOOTER_SPEED);
+		
 	}
 
 	public void stopShooter() {
@@ -96,6 +102,11 @@ public class Intake extends Subsystem {
 	
     public void initDefaultCommand() {
         setDefaultCommand(new IntakeUpdateSmartDashboard());
+    }
+    
+    public void changeSpeed() {
+    	prefs = Preferences.getInstance();
+    	SHOOTER_SPEED = prefs.getDouble("Shooter Speed", 1200);
     }
 }
 
