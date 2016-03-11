@@ -56,6 +56,10 @@ public class Intake extends Subsystem {
 //		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
 		boulderHolder = new AnalogInput(RobotMap.boulderHolder);
+    
+		prefs = Preferences.getInstance();
+    	prefs.getDouble("shooterDistance", 24.0);
+    	prefs.getDouble("shooterSpeed", SHOOTER_SPEED);
 	}
 
 	public void move(double speed) {
