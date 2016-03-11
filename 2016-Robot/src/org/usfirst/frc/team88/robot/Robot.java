@@ -77,6 +77,7 @@ public class Robot extends IterativeRobot {
 		autoSelector.addObject("Backwards 3m", new AutoBack3Meters());
 		autoSelector.addObject("Low Bar No Shoot", new AutoLowBarNoShoot());
 		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
+		autoSelector.addObject("Back and Forward", new AutoBackAndForth());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
