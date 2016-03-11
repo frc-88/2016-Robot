@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *  One boulder goes in
+ *  Happy boulder in its nest
+ *  What's that noise? Up and away!
  */
 public class Intake extends Subsystem {
 	
