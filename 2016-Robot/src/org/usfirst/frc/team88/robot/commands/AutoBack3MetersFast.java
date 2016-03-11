@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoBack3MetersFast extends Command {
-	private final static double DISTANCE = 7000.0;
+	private final static double DISTANCE = 9000.0;
 	
     public AutoBack3MetersFast() {
     	requires(Robot.drive);
