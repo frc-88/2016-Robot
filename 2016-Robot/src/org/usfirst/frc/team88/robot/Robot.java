@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team88.robot.commands.AutoDoNothing;
+import org.usfirst.frc.team88.robot.commands.AutoForward3MetersFast;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
@@ -15,6 +16,7 @@ import org.usfirst.frc.team88.robot.commands.ArmsDown;
 import org.usfirst.frc.team88.robot.commands.ArmsZero;
 import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
 import org.usfirst.frc.team88.robot.commands.AutoBack3MetersFast;
+import org.usfirst.frc.team88.robot.commands.AutoBackAndForth;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -75,12 +77,15 @@ public class Robot extends IterativeRobot {
 		autoSelector.addObject("Backwards 3m", new AutoBack3Meters());
 		autoSelector.addObject("Low Bar No Shoot", new AutoLowBarNoShoot());
 		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
+		autoSelector.addObject("Back and Forward", new AutoBackAndForth());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
 		SmartDashboard.putData("Do Nothing", new AutoDoNothing());
 		SmartDashboard.putData("Backwards 3m", new AutoBack3Meters());
 		SmartDashboard.putData("FAST Backwards 3m", new AutoBack3MetersFast());
+		SmartDashboard.putData("FAST Forawrds 3m", new AutoForward3MetersFast());
+		SmartDashboard.putData("FAST Backward and Forwards 3m", new AutoBackAndForth());
 		SmartDashboard.putData("Low Bar No Shoot", new AutoLowBarNoShoot());
 		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
 		SmartDashboard.putData("ArmsZero", new ArmsZero());

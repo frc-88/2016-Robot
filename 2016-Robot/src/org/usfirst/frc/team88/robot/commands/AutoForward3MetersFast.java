@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoBack3MetersFast extends Command {
+public class AutoForward3MetersFast extends Command {
 	private final static double DISTANCE = 9000.0;
 	
-    public AutoBack3MetersFast() {
+    public AutoForward3MetersFast() {
     	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.resetPosition();
-    	Robot.drive.set(0.72, 0.7);
+    	Robot.drive.set(-0.72, -0.7);
     }
 
     // Called repeatedly when this Command is scheduled to run

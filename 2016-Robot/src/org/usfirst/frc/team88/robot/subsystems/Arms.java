@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *  I pick things up and
+ *  then I put them down. Oh wait.
+ *  That was last year's game.
  */
 public class Arms extends Subsystem {
     

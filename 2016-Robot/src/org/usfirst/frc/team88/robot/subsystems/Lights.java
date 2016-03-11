@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *  Bright and shiny lights
+ *  Hypnotize and bewilder
+ *  And win us awards!
  */
 public class Lights extends Subsystem {
 
