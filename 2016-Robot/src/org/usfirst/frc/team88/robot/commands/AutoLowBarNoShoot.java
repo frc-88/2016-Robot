@@ -12,6 +12,6 @@ public class AutoLowBarNoShoot extends CommandGroup {
     	addSequential(new ArmsZero());
     	addSequential(new ArmsDown());
     	addSequential(new IntakeStop());
-    	addSequential(new AutoBack3Meters());
+    	addSequential(new AutoBackwards("AutoLowBarNoShoot", 6000));
     }
 }

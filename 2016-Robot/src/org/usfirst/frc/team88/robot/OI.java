@@ -2,7 +2,6 @@ package org.usfirst.frc.team88.robot;
 
 import org.usfirst.frc.team88.robot.commands.ArmsDownOnePosition;
 import org.usfirst.frc.team88.robot.commands.ArmsUpOnePosition;
-import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
 import org.usfirst.frc.team88.robot.commands.DriveClosedLoop;
 import org.usfirst.frc.team88.robot.commands.DriveOpenLoop;
 import org.usfirst.frc.team88.robot.commands.DrivePark;

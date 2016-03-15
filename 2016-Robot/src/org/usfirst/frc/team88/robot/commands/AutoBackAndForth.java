@@ -11,7 +11,7 @@ public class AutoBackAndForth extends CommandGroup {
     	addParallel(new IntakeIn());
     	addSequential(new ArmsZero());
     	addSequential(new IntakeStop());
-    	addSequential(new AutoBack3MetersFast());
+    	addSequential(new AutoBackwards(9000,true));
     	addSequential(new AutoForward3MetersFast());
     }
 }
