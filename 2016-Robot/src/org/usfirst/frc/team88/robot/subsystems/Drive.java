@@ -112,8 +112,8 @@ public class Drive extends Subsystem implements PIDOutput {
 	}
 
 	public void resetPosition() {
-		lTalonMaster.setPosition(0);
-		rTalonMaster.setPosition(0);
+		lTalonMaster.setEncPosition(0);
+		rTalonMaster.setEncPosition(0);
 	}
 
 	public void set(double left, double right) {
@@ -180,7 +180,7 @@ public class Drive extends Subsystem implements PIDOutput {
 		set(-output, output);
 	}
 
-	private void updateSmartDashboard() {
+	public void updateSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder: ", lTalonMaster.getPosition());
 		SmartDashboard.putNumber("Left Master Voltage: ", lTalonMaster.getOutputVoltage());
 		SmartDashboard.putNumber("Left Master Current: ", lTalonMaster.getOutputCurrent());
