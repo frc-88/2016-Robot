@@ -89,7 +89,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
 		SmartDashboard.putData("ArmsZero", new ArmsZero());
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
-		SmartDashboard.putData("Rotate Left 90", new AutoRotateToAngle(-90));
+		SmartDashboard.putData("Rotate to -90", new AutoRotateToAngle(-90.0f));
+		SmartDashboard.putData("Rotate to +90", new AutoRotateToAngle(90.0f));
 	}
 
 	/**

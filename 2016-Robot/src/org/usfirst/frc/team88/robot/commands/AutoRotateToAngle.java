@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoRotateToAngle extends Command {
-	private double target;
+	private float target;
 
-	public AutoRotateToAngle(double angle) {
+	public AutoRotateToAngle(float angle) {
 		requires(Robot.drive);
 
 		target = angle;
@@ -24,6 +24,7 @@ public class AutoRotateToAngle extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.drive.updateSmartDashboard();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
