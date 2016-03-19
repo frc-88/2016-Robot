@@ -35,9 +35,12 @@ public class LightsShow extends Command {
 				// rainbow for last 20 seconds
 				// alliance colors the rest of the time
 				if (Robot.intake.getShooterAnalog() > 0.07){
-					analog = Robot.intake.getShooterAnalog();
-					if (analog > 1.0){
-						analog = 1.0;
+					analog = Robot.intake.getShooterAnalog() * 5;
+					SmartDashboard.putNumber("Analog: ", analog);
+					
+					
+					if (analog > 5.0){
+						analog = 5.0;
 					}
 					
 					if (ds.getAlliance() == DriverStation.Alliance.Blue){
