@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class LightsShow extends Command {
 
+	private static double analog;
 	public LightsShow() {
 		requires(Robot.lights);
 	}
@@ -34,14 +35,21 @@ public class LightsShow extends Command {
 				// rainbow for last 20 seconds
 				// alliance colors the rest of the time
 				if (Robot.intake.getShooterAnalog() > 0.07){
-						if (ds.getAlliance() == DriverStation.Alliance.Blue){
-							Robot.lights.setMode(LightsMode.BlueAnalog);
-						}
-						else{
-							Robot.lights.setMode(LightsMode.RedAnalog);
-						}
+					analog = Robot.intake.getShooterAnalog();
+					if (analog > 1.0){
+						analog = 1.0;
+					}
+					
+					if (ds.getAlliance() == DriverStation.Alliance.Blue){
+						Robot.lights.setMode(LightsMode.BlueAnalog);
+					}
+					else{
+						Robot.lights.setMode(LightsMode.RedAnalog);
+					}
+
 				}
 				else{
+					analog = 0.0;
 					if (ds.getMatchTime() < 20) {
 						Robot.lights.setMode(LightsMode.Rainbow);
 					} else if (ds.getAlliance() == DriverStation.Alliance.Blue) {
@@ -57,7 +65,7 @@ public class LightsShow extends Command {
 		}
 
 
-		Robot.lights.setAnalogOut(Robot.intake.getShooterAnalog());
+		Robot.lights.setAnalogOut(analog);
 		//SmartDashboard.putNumber("stick", Robot.oi.getDriverRightZAxis());
 
 	}
