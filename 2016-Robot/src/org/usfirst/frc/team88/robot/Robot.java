@@ -9,13 +9,19 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team88.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team88.robot.commands.AutoForward3MetersFast;
+import org.usfirst.frc.team88.robot.commands.AutoForwards;
+import org.usfirst.frc.team88.robot.commands.AutoLowBarLowGoal;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
+import org.usfirst.frc.team88.robot.commands.IntakeIn;
+import org.usfirst.frc.team88.robot.commands.IntakeOut;
+import org.usfirst.frc.team88.robot.commands.IntakeStop;
 import org.usfirst.frc.team88.robot.commands.ArmsDown;
 import org.usfirst.frc.team88.robot.commands.ArmsZero;
 import org.usfirst.frc.team88.robot.commands.AutoBackAndForth;
 import org.usfirst.frc.team88.robot.commands.AutoBackwards;
+import org.usfirst.frc.team88.robot.commands.AutoBackwardsToDistance;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -91,6 +97,14 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
 		SmartDashboard.putData("Rotate to -90", new AutoRotateToAngle(-90.0f));
 		SmartDashboard.putData("Rotate to +90", new AutoRotateToAngle(90.0f));
+		SmartDashboard.putData("Low Bar Low Goal", new AutoLowBarLowGoal());
+		SmartDashboard.putData("LowBarLowGoal Leg1", new AutoBackwardsToDistance("AutoLowBarLowGoalLeg1",5000));
+		SmartDashboard.putData("LowBarLowGoal Leg2", new AutoForwards("AutoLowBarLowGoalLeg2",3000));
+		SmartDashboard.putData("Intake In", new IntakeIn());
+		SmartDashboard.putData("Intake Stop", new IntakeOut());
+		SmartDashboard.putData("Intake Stop", new IntakeStop());
+		SmartDashboard.putData("Rotate to 150", new AutoRotateToAngle(150));
+
 	}
 
 	/**
