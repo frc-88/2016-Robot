@@ -28,6 +28,7 @@ public class Intake extends Subsystem {
 
 //	private final static double SHOOTER_SPEED = 0.65;
 	private static double SHOOTER_SPEED = 1200;
+	private static double SHOOTER_TARGET_SPEED = 2380;
 	// shooter speed is in position change / 10ms
 	// shooter encoder is 128 count, so 512 ticks per rotation
 	// so 512 would be 1 rotation per 10ms, or 100 rotations per second
@@ -75,8 +76,8 @@ public class Intake extends Subsystem {
 	}
 	
 	public boolean isShooterReady(){	
-		return ( ( ( SHOOTER_SPEED - THRESHOLD_SPEED ) <= ( shooterTalon.getSpeed() * 10 ) ) && 
-				 ( ( SHOOTER_SPEED + THRESHOLD_SPEED ) >= ( shooterTalon.getSpeed() * 10 ) ) );
+		return ( ( ( SHOOTER_TARGET_SPEED - THRESHOLD_SPEED ) <= ( shooterTalon.getSpeed()) ) && 
+				 ( ( SHOOTER_TARGET_SPEED + THRESHOLD_SPEED ) >= ( shooterTalon.getSpeed()) ) );
 	}
 
 	public double getShooterSpeed() {
