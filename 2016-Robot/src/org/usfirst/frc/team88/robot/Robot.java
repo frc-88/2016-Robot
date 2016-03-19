@@ -14,6 +14,7 @@ import org.usfirst.frc.team88.robot.commands.AutoLowBarLowGoal;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
+import org.usfirst.frc.team88.robot.commands.DrivePark2;
 import org.usfirst.frc.team88.robot.commands.IntakeIn;
 import org.usfirst.frc.team88.robot.commands.IntakeOut;
 import org.usfirst.frc.team88.robot.commands.IntakeStop;
@@ -104,6 +105,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Intake Stop", new IntakeOut());
 		SmartDashboard.putData("Intake Stop", new IntakeStop());
 		SmartDashboard.putData("Rotate to 150", new AutoRotateToAngle(150));
+		SmartDashboard.putData("Park 2.0", new DrivePark2());
 
 	}
 

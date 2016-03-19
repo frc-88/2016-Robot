@@ -4,6 +4,7 @@ import org.usfirst.frc.team88.robot.LightsMode;
 import org.usfirst.frc.team88.robot.Robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -32,21 +33,32 @@ public class LightsShow extends Command {
 			} else if (ds.isOperatorControl()) {
 				// rainbow for last 20 seconds
 				// alliance colors the rest of the time
-				if (ds.getMatchTime() < 20) {
-					Robot.lights.setMode(LightsMode.Rainbow);
-				} else if (ds.getAlliance() == DriverStation.Alliance.Blue) {
-					Robot.lights.setMode(LightsMode.BlueJuggle);
-				} else {
-					Robot.lights.setMode(LightsMode.RedJuggle);
+				if (Robot.intake.getShooterAnalog() > 0.07){
+						if (ds.getAlliance() == DriverStation.Alliance.Blue){
+							Robot.lights.setMode(LightsMode.BlueAnalog);
+						}
+						else{
+							Robot.lights.setMode(LightsMode.RedAnalog);
+						}
+				}
+				else{
+					if (ds.getMatchTime() < 20) {
+						Robot.lights.setMode(LightsMode.Rainbow);
+					} else if (ds.getAlliance() == DriverStation.Alliance.Blue) {
+						Robot.lights.setMode(LightsMode.BlueJuggle);
+					} else {
+						Robot.lights.setMode(LightsMode.RedJuggle);
+					}
 				}
 			} else if (ds.isDisabled()) {
 				Robot.lights.setMode(LightsMode.Rainbow);
 			}
+
 		}
 
-		//
-		// Robot.lights.setAnalogOut(Robot.oi.getDriverRightZAxis());
-		// SmartDashboard.putNumber("stick", Robot.oi.getDriverRightZAxis());
+
+		Robot.lights.setAnalogOut(Robot.intake.getShooterAnalog());
+		//SmartDashboard.putNumber("stick", Robot.oi.getDriverRightZAxis());
 
 	}
 

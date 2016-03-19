@@ -40,6 +40,8 @@ public class Intake extends Subsystem {
 	public final static double INTAKE_IN = 0.9;
 	public final static double INTAKE_OUT = -1.0;
 	
+	private static double shooterLights;
+	
 	private final CANTalon intakeTalon;
 	private final CANTalon shooterTalon;
 
@@ -109,7 +111,12 @@ public class Intake extends Subsystem {
     
     public void changeSpeed() {
     	prefs = Preferences.getInstance();
-    	SHOOTER_SPEED = prefs.getDouble("shooterSpeed", 1200);
+    	SHOOTER_SPEED = prefs.getDouble("shooterSpeed", 1050);
+    }
+    
+    public double getShooterAnalog(){
+    	shooterLights = shooterTalon.getSpeed() / SHOOTER_SPEED;
+    	return shooterLights;
     }
 }
 
