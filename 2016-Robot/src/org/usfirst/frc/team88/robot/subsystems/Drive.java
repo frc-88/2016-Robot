@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,6 +24,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Subsystem implements PIDOutput {
 
+	Preferences prefs;
+	
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 	private CANTalon.TalonControlMode controlMode;
 	public AHRS navX;
@@ -50,6 +53,8 @@ public class Drive extends Subsystem implements PIDOutput {
 	private final static double ROTATE_D = 0.0;
 	private final static double ROTATE_F = 0.0;
 	private final static double ROTATE_TOLERANCE = 4.0f;
+	
+	private static double LIDAR_DISTANCE = 300;
 
 	public Drive() {
 		// instantiate NavX
@@ -331,4 +336,12 @@ public class Drive extends Subsystem implements PIDOutput {
 		SmartDashboard.putNumber("IMU_Byte_Count", navX.getByteCount());
 		SmartDashboard.putNumber("IMU_Update_Count", navX.getUpdateCount());
 	}
+	public double getLidarDistance() {
+		changeDistance();
+		return LIDAR_DISTANCE;
+	}
+    public void changeDistance() {
+    	prefs = Preferences.getInstance();
+    	LIDAR_DISTANCE = prefs.getDouble("lidarDistance", 300);
+    }
 }

@@ -8,9 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoBackwardsToDistance extends Command {
-	private final double LIDAR_DISTANCE = 310.0;
-	
+public class AutoBackwardsToDistance extends Command {	
 	private double distance;
 	private String prefName;
 	private double prefValue;
@@ -66,7 +64,7 @@ public class AutoBackwardsToDistance extends Command {
     protected boolean isFinished() {
         return ( ( Math.abs(Robot.drive.getLeftPosition()) > distance || 
         		   Math.abs(Robot.drive.getRightPosition()) > distance ) 
-        		&& Robot.lidar.getDistance() < LIDAR_DISTANCE);
+        		&& Robot.lidar.getDistance() < Robot.drive.getLidarDistance());
     }
 
     // Called once after isFinished returns true
