@@ -54,7 +54,7 @@ public class Drive extends Subsystem implements PIDOutput {
 	private final static double ROTATE_F = 0.0;
 	private final static double ROTATE_TOLERANCE = 4.0f;
 	
-	private static double LIDAR_DISTANCE = 300;
+	private static double LIDAR_DISTANCE = 275;
 
 	public Drive() {
 		// instantiate NavX
@@ -342,6 +342,6 @@ public class Drive extends Subsystem implements PIDOutput {
 	}
     public void changeDistance() {
     	prefs = Preferences.getInstance();
-    	LIDAR_DISTANCE = prefs.getDouble("lidarDistance", 300);
+    	LIDAR_DISTANCE = prefs.getDouble("lidarDistance", 275);
     }
 }
