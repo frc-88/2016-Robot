@@ -12,8 +12,10 @@ public class AutoBackwards extends Command {
 	private double distance;
 	private String prefName;
 	private double prefValue;
+	private double leftSpeed;
+	private double rightSpeed;
 	private boolean fast;
-	private Preferences prefs = Preferences.getInstance(); 
+	private Preferences prefs = Preferences.getInstance();
 
 	
     public AutoBackwards(double input) {
@@ -48,9 +50,13 @@ public class AutoBackwards extends Command {
 
     	Robot.drive.resetPosition();
     	if (fast) {
-        	Robot.drive.set(0.72, 0.7);
+    		leftSpeed = prefs.getDouble("leftFast", 0.72);
+    		rightSpeed = prefs.getDouble("rightFast", 0.7);
+        	Robot.drive.set(leftSpeed, rightSpeed);
     	} else {
-    		Robot.drive.set(0.27, 0.2);
+    		leftSpeed = prefs.getDouble("leftSlow", 0.27);
+    		rightSpeed = prefs.getDouble("rightSlow", 0.2);
+    		Robot.drive.set(leftSpeed, rightSpeed);
     	}
     }
 

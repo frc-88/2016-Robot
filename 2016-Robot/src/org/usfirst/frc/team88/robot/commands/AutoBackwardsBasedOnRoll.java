@@ -11,6 +11,6 @@ public class AutoBackwardsBasedOnRoll extends CommandGroup {
     	
     	//The angle used (number below) needs to be at lease 8 greater the starting roll value
     	
-    	addSequential (new AutoBackwardsToRoll("NicksPref", 8.5, false));
+    	addSequential (new AutoBackwardsToRoll("navXRoll", 8.5, false));
     }
 }
