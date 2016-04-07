@@ -8,31 +8,31 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoBackwardsToDistance extends Command {	
-	private double distance;
+public class AutoBackwardsToRoll extends Command {	
+
+	private double roll;
+	private boolean fast;
 	private String prefName;
 	private double prefValue;
-	private boolean fast;
-	private Preferences prefs = Preferences.getInstance(); 
+	private Preferences prefs = Preferences.getInstance();
 
 	
-    public AutoBackwardsToDistance(double input) {
+    public AutoBackwardsToRoll(double input) {
     	this(input,false);
     }
 
-    public AutoBackwardsToDistance(double input, boolean speedy) {
+    public AutoBackwardsToRoll(double input, boolean speedy) {
     	requires(Robot.drive);
     	
     	prefName = null;
     	fast = speedy;
-    	distance = input;
     }
 
-    public AutoBackwardsToDistance(String pref, double input) {
+    public AutoBackwardsToRoll(String pref, double input) {
     	this(pref, input, false);
     }
 
-    public AutoBackwardsToDistance(String pref, double input, boolean speedy) {
+    public AutoBackwardsToRoll(String pref, double input, boolean speedy) {
     	requires(Robot.drive);
     	
     	prefName = pref;
@@ -44,7 +44,7 @@ public class AutoBackwardsToDistance extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (prefName != null) {
-    		distance = prefs.getDouble(prefName, prefValue);
+    		roll = prefs.getDouble(prefName, prefValue);
     	}
 
     	Robot.drive.resetPosition();
@@ -62,10 +62,7 @@ public class AutoBackwardsToDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return ( ( Math.abs(Robot.drive.getLeftPosition()) > distance || 
-        		   Math.abs(Robot.drive.getRightPosition()) > distance ) 
-        		&& Robot.lidar.getDistance() < Robot.drive.getLidarDistance());
-//    	return Robot.lidar.getDistance() < Robot.drive.getLidarDistance();
+    	return Math.abs(Robot.drive.getRoll()) > roll;
     }
 
     // Called once after isFinished returns true

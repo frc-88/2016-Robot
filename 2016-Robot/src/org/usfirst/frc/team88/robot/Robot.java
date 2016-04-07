@@ -22,6 +22,7 @@ import org.usfirst.frc.team88.robot.commands.ArmsDown;
 import org.usfirst.frc.team88.robot.commands.ArmsZero;
 import org.usfirst.frc.team88.robot.commands.AutoBackAndForth;
 import org.usfirst.frc.team88.robot.commands.AutoBackwards;
+import org.usfirst.frc.team88.robot.commands.AutoBackwardsBasedOnRoll;
 import org.usfirst.frc.team88.robot.commands.AutoBackwardsToDistance;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
@@ -106,6 +107,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Intake Stop", new IntakeStop());
 		SmartDashboard.putData("Rotate to 150", new AutoRotateToAngle(150));
 		SmartDashboard.putData("Park 2.0", new DrivePark2());
+		SmartDashboard.putData("Back to Roll", new AutoBackwardsBasedOnRoll());
+
 
 	}
 

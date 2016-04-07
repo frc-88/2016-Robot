@@ -230,111 +230,9 @@ public class Drive extends Subsystem implements PIDOutput {
 		SmartDashboard.putNumber("IMU_Pitch", navX.getPitch());
 		SmartDashboard.putNumber("IMU_Roll", navX.getRoll());
 
-		/* Display tilt-corrected, Magnetometer-based heading (requires */
-		/* magnetometer calibration to be useful) */
-
-		SmartDashboard.putNumber("IMU_CompassHeading", navX.getCompassHeading());
-
-		/*
-		 * Display 9-axis Heading (requires magnetometer calibration to be
-		 * useful)
-		 */
-		SmartDashboard.putNumber("IMU_FusedHeading", navX.getFusedHeading());
-
-		/*
-		 * These functions are compatible w/the WPI Gyro Class, providing a
-		 * simple
-		 */
-		/* path for upgrading from the Kit-of-Parts gyro to the navx-MXP */
-
-		SmartDashboard.putNumber("IMU_TotalYaw", navX.getAngle());
-		SmartDashboard.putNumber("IMU_YawRateDPS", navX.getRate());
-
-		/*
-		 * Display Processed Acceleration Data (Linear Acceleration, Motion
-		 * Detect)
-		 */
-
-		SmartDashboard.putNumber("IMU_Accel_X", navX.getWorldLinearAccelX());
-		SmartDashboard.putNumber("IMU_Accel_Y", navX.getWorldLinearAccelY());
-		SmartDashboard.putBoolean("IMU_IsMoving", navX.isMoving());
-		SmartDashboard.putBoolean("IMU_IsRotating", navX.isRotating());
-
-		/*
-		 * Display estimates of velocity/displacement. Note that these values
-		 * are
-		 */
-		/*
-		 * not expected to be accurate enough for estimating robot position on a
-		 */
-		/*
-		 * FIRST FRC Robotics Field, due to accelerometer noise and the
-		 * compounding
-		 */
-		/*
-		 * of these errors due to single (velocity) integration and especially
-		 */
-		/* double (displacement) integration. */
-
-		SmartDashboard.putNumber("Velocity_X", navX.getVelocityX());
-		SmartDashboard.putNumber("Velocity_Y", navX.getVelocityY());
 		SmartDashboard.putNumber("Displacement_X", navX.getDisplacementX());
 		SmartDashboard.putNumber("Displacement_Y", navX.getDisplacementY());
 
-		/* Display Raw Gyro/Accelerometer/Magnetometer Values */
-		/*
-		 * NOTE: These values are not normally necessary, but are made available
-		 */
-		/*
-		 * for advanced users. Before using this data, please consider whether
-		 */
-		/* the processed data (see above) will suit your needs. */
-
-		SmartDashboard.putNumber("RawGyro_X", navX.getRawGyroX());
-		SmartDashboard.putNumber("RawGyro_Y", navX.getRawGyroY());
-		SmartDashboard.putNumber("RawGyro_Z", navX.getRawGyroZ());
-		SmartDashboard.putNumber("RawAccel_X", navX.getRawAccelX());
-		SmartDashboard.putNumber("RawAccel_Y", navX.getRawAccelY());
-		SmartDashboard.putNumber("RawAccel_Z", navX.getRawAccelZ());
-		SmartDashboard.putNumber("RawMag_X", navX.getRawMagX());
-		SmartDashboard.putNumber("RawMag_Y", navX.getRawMagY());
-		SmartDashboard.putNumber("RawMag_Z", navX.getRawMagZ());
-		SmartDashboard.putNumber("IMU_Temp_C", navX.getTempC());
-
-		/* Omnimount Yaw Axis Information */
-		/*
-		 * For more info, see
-		 * http://navx-mxp.kauailabs.com/installation/omnimount
-		 */
-		AHRS.BoardYawAxis yaw_axis = navX.getBoardYawAxis();
-		SmartDashboard.putString("YawAxisDirection", yaw_axis.up ? "Up" : "Down");
-		SmartDashboard.putNumber("YawAxis", yaw_axis.board_axis.getValue());
-
-		/* Sensor Board Information */
-		SmartDashboard.putString("FirmwareVersion", navX.getFirmwareVersion());
-
-		/* Quaternion Data */
-		/*
-		 * Quaternions are fascinating, and are the most compact representation
-		 * of
-		 */
-		/*
-		 * orientation data. All of the Yaw, Pitch and Roll Values can be
-		 * derived
-		 */
-		/*
-		 * from the Quaternions. If interested in motion processing, knowledge
-		 * of
-		 */
-		/* Quaternions is highly recommended. */
-		SmartDashboard.putNumber("QuaternionW", navX.getQuaternionW());
-		SmartDashboard.putNumber("QuaternionX", navX.getQuaternionX());
-		SmartDashboard.putNumber("QuaternionY", navX.getQuaternionY());
-		SmartDashboard.putNumber("QuaternionZ", navX.getQuaternionZ());
-
-		/* Connectivity Debugging Support */
-		SmartDashboard.putNumber("IMU_Byte_Count", navX.getByteCount());
-		SmartDashboard.putNumber("IMU_Update_Count", navX.getUpdateCount());
 	}
 	public double getLidarDistance() {
 		changeDistance();
@@ -343,5 +241,9 @@ public class Drive extends Subsystem implements PIDOutput {
     public void changeDistance() {
     	prefs = Preferences.getInstance();
     	LIDAR_DISTANCE = prefs.getDouble("lidarDistance", 275);
+    }
+    
+    public double getRoll(){
+    	return navX.getRoll();
     }
 }
