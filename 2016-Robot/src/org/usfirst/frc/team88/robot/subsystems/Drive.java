@@ -234,14 +234,6 @@ public class Drive extends Subsystem implements PIDOutput {
 		SmartDashboard.putNumber("Displacement_Y", navX.getDisplacementY());
 
 	}
-	public double getLidarDistance() {
-		changeDistance();
-		return LIDAR_DISTANCE;
-	}
-    public void changeDistance() {
-    	prefs = Preferences.getInstance();
-    	LIDAR_DISTANCE = prefs.getDouble("lidarDistance", 275);
-    }
     
     public double getRoll(){
     	return navX.getRoll();

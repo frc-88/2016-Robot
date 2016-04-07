@@ -70,7 +70,7 @@ public class AutoBackwardsToDistance extends Command {
     protected boolean isFinished() {
         return ( ( Math.abs(Robot.drive.getLeftPosition()) > distance || 
         		   Math.abs(Robot.drive.getRightPosition()) > distance ) 
-        		&& Robot.lidar.getDistance() < Robot.drive.getLidarDistance());
+        		&& Robot.lidar.getDistance() < prefs.getDouble("lidarDistance", 275));
 //    	return Robot.lidar.getDistance() < Robot.drive.getLidarDistance();
     }
 
