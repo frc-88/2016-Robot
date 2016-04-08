@@ -46,6 +46,7 @@ public class Intake extends Subsystem {
 	private final CANTalon shooterTalon;
 
 	private final AnalogInput boulderHolder;
+	private boolean shooterRunning;
 	
 	public Intake (){
 		intakeTalon = new CANTalon(RobotMap.intakeMotor);
@@ -70,11 +71,18 @@ public class Intake extends Subsystem {
 	public void startShooter() {
 		changeSpeed();
 		shooterTalon.set(SHOOTER_SPEED);
-		
+		shooterRunning = true;
+		printShooter();
 	}
 
 	public void stopShooter() {
 		shooterTalon.set(0);
+		shooterRunning = false;
+		printShooter();
+	}
+	
+	public void printShooter(){
+		SmartDashboard.putBoolean("Shooter Running", shooterRunning);
 	}
 	
 	public boolean isShooterReady(){	
