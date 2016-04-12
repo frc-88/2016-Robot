@@ -97,7 +97,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
 
 		SmartDashboard.putData("Intake In", new IntakeIn());
-		SmartDashboard.putData("Intake Stop", new IntakeOut());
+		SmartDashboard.putData("Intake Out", new IntakeOut());
 		SmartDashboard.putData("Intake Stop", new IntakeStop());
 		
 		SmartDashboard.putData("Drive LBNS", new AutoBackwards("Dist_LBNS", 6000));
