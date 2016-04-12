@@ -44,7 +44,7 @@ public class AutoForwards extends Command {
 		setting = "Roll";
 	}
 
-	public AutoForwards(double input, double angle, double lidar, boolean speedy){
+	public AutoForwards(double input, double angle, double lidar, boolean speedy){ 
 		requires(Robot.drive);
 
 		fast = speedy;
