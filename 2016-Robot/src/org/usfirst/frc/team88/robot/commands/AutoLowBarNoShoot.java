@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLowBarNoShoot extends CommandGroup {
     
     public  AutoLowBarNoShoot() {
-    	//addParallel(new IntakeIn());
+    	addParallel(new IntakeIn());
     	addSequential(new ArmsZero());
     	addSequential(new ArmsDown());
     	addSequential(new IntakeStop());
-    	addSequential(new AutoBackwards("AutoLowBarNoShoot", 6000));
+    	addSequential(new AutoBackwards("Dist_LBNS", 6000));
     }
 }

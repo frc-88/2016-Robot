@@ -2,6 +2,7 @@ package org.usfirst.frc.team88.robot.commands;
 
 import org.usfirst.frc.team88.robot.Robot;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,15 +10,27 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoRotateToAngle extends Command {
 	private float target;
+	private String prefName;
+	private float prefValue;
+	private Preferences prefs = Preferences.getInstance();
 
 	public AutoRotateToAngle(float angle) {
-		requires(Robot.drive);
-
 		target = angle;
 	}
 
+    public AutoRotateToAngle(String pref, float angle) {
+    	requires(Robot.drive);
+    	
+    	prefName = pref;
+		prefValue = angle;
+    }
+	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+    	if (prefName != null) {
+    		target = prefs.getFloat(prefName, prefValue);
+    	}
+		
 		Robot.drive.turnController.setSetpoint(target);
 		Robot.drive.turnController.enable();
 	}

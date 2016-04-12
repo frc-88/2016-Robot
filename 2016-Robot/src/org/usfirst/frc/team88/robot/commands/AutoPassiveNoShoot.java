@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoPassiveNoShoot extends CommandGroup {
     
     public  AutoPassiveNoShoot() {
-    	//addParallel(new IntakeIn());
+    	addParallel(new IntakeIn());
     	addSequential(new ArmsZero());
     	addSequential(new IntakeStop());
-    	addSequential(new AutoBackwards(9000,true));
+    	addSequential(new AutoBackwards("Dist_PNS",9000,true));
     }
 }

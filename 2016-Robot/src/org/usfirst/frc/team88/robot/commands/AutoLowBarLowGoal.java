@@ -12,9 +12,9 @@ public class AutoLowBarLowGoal extends CommandGroup {
     	addSequential(new ArmsZero());
     	addSequential(new ArmsDown());
     	addSequential(new IntakeStop());
-    	addSequential(new AutoBackwardsToDistance("AutoLowBarLowGoalLeg1",4000));
-    	addSequential(new AutoRotateToAngle(120.0f));
-    	addSequential(new AutoForwards("AutoLowBarLowGoalLeg2",3000));
+    	addSequential(new AutoBackwardsToDistance("Dist_LBLG_1", 4000));
+    	addSequential(new AutoRotateToAngle("Angle_LBLG", 120.0f));
+    	addSequential(new AutoForwards("Dist_LBLG_2", 3000));
     	addSequential(new IntakeOut());
     	addSequential(new AutoDelay(3.0));
     	addSequential(new IntakeStop());

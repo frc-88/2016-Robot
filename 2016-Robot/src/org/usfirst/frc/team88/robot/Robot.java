@@ -81,35 +81,30 @@ public class Robot extends IterativeRobot {
 		// set up SendableChooser to select autonomous mode
 		autoSelector = new SendableChooser();
 		autoSelector.addDefault("Do Nothing", new AutoDoNothing());
-		autoSelector.addObject("Backwards 3m", new AutoBackwards(6000));
 		autoSelector.addObject("Low Bar No Shoot", new AutoLowBarNoShoot());
 		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
-		autoSelector.addObject("Back and Forward", new AutoBackAndForth());
+		autoSelector.addObject("Low Bar Low Goal", new AutoLowBarLowGoal());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
 		SmartDashboard.putData("Do Nothing", new AutoDoNothing());
-		SmartDashboard.putData("Backwards 3m", new AutoBackwards(6000));
-		SmartDashboard.putData("FAST Backwards 3m", new AutoBackwards(9000, true));
-		SmartDashboard.putData("FAST Forawrds 3m", new AutoForward3MetersFast());
-		SmartDashboard.putData("FAST Backward and Forwards 3m", new AutoBackAndForth());
 		SmartDashboard.putData("Low Bar No Shoot", new AutoLowBarNoShoot());
 		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
+		SmartDashboard.putData("Low Bar Low Goal", new AutoLowBarLowGoal());
+		
+		// Buttons for testing component commands
 		SmartDashboard.putData("ArmsZero", new ArmsZero());
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
-		SmartDashboard.putData("Rotate to -90", new AutoRotateToAngle(-90.0f));
-		SmartDashboard.putData("Rotate to +90", new AutoRotateToAngle(90.0f));
-		SmartDashboard.putData("Low Bar Low Goal", new AutoLowBarLowGoal());
-		SmartDashboard.putData("LowBarLowGoal Leg1", new AutoBackwardsToDistance("AutoLowBarLowGoalLeg1",5000));
-		SmartDashboard.putData("LowBarLowGoal Leg2", new AutoForwards("AutoLowBarLowGoalLeg2",3000));
+
 		SmartDashboard.putData("Intake In", new IntakeIn());
 		SmartDashboard.putData("Intake Stop", new IntakeOut());
 		SmartDashboard.putData("Intake Stop", new IntakeStop());
-		SmartDashboard.putData("Rotate to 150", new AutoRotateToAngle(150));
-		SmartDashboard.putData("Park 2.0", new DrivePark2());
-		SmartDashboard.putData("Back to Roll", new AutoBackwardsBasedOnRoll());
-
-
+		
+		SmartDashboard.putData("Drive LBNS", new AutoBackwards("Dist_LBNS", 6000));
+		SmartDashboard.putData("Drive PNS", new AutoBackwards("Dist_PNS", 9000, true));
+		SmartDashboard.putData("Drive LBLG_1", new AutoBackwardsToDistance("Dist_LBLG_1", 4000));
+		SmartDashboard.putData("Angle LBLG", new AutoRotateToAngle("Angle_LBLG", 120.0f));
+		SmartDashboard.putData("Drive LBLG_2", new AutoForwards("Dist_LBLG_2", 3000));
 	}
 
 	/**

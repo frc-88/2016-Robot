@@ -16,7 +16,6 @@ public class AutoBackwards extends Command {
 	private double rightSpeed;
 	private boolean fast;
 	private Preferences prefs = Preferences.getInstance();
-
 	
     public AutoBackwards(double input) {
     	this(input,false);
