@@ -2,6 +2,7 @@ package org.usfirst.frc.team88.robot;
 
 import org.usfirst.frc.team88.robot.commands.ArmsDownOnePosition;
 import org.usfirst.frc.team88.robot.commands.ArmsUpOnePosition;
+import org.usfirst.frc.team88.robot.commands.AutoCDF;
 import org.usfirst.frc.team88.robot.commands.DriveClosedLoop;
 import org.usfirst.frc.team88.robot.commands.DriveOpenLoop;
 import org.usfirst.frc.team88.robot.commands.DrivePark;
@@ -92,6 +93,7 @@ public class OI {
 		operatorButtonBack.whenPressed(new ShooterStop());
 		operatorButtonLeftBumper.whenPressed(new ArmsUpOnePosition());
 		operatorButtonRightBumper.whenPressed(new ArmsDownOnePosition());
+		//operatorButtonBack.whenPressed(new AutoCDF());
 	}
 
 	// driver
