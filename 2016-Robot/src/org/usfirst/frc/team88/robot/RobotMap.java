@@ -14,7 +14,7 @@ public class RobotMap {
 	public static int driveLeftSlave = 2;
 
 	public static int driveRightMaster = 6;
-	public static int driveRightSlave = 8;
+	public static int driveRightSlave = 7;
 
 	// Intake
 	// encoder on shooterMotor to know when it is up to speed
@@ -40,7 +40,7 @@ public class RobotMap {
 
 	// HDS - Hook Delivery System
 	public static int hdsElevatorMotorController = 5;
-	public static int hdsAngleMotorController = 7;
+	public static int hdsAngleMotorController = 8;
 
 	// Climber
 	public static int climberMotor = 10;

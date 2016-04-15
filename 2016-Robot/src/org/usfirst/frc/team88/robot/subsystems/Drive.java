@@ -182,8 +182,8 @@ public class Drive extends Subsystem implements PIDOutput {
 	/* This function is invoked periodically by the PID Controller, */
 	/* based upon navX-MXP yaw angle input and PID Coefficients. */
 	public void pidWrite(double output) {
-		double max = 0.6;
-		double min = 0.2;
+		double max = 0.4;
+		double min = 0.1;
 		
 		if (output > max) {
 			output = max;
@@ -202,18 +202,18 @@ public class Drive extends Subsystem implements PIDOutput {
 
 	public void updateSmartDashboard() {
 		SmartDashboard.putNumber("Left Encoder: ", lTalonMaster.getPosition());
-		SmartDashboard.putNumber("Left Master Voltage: ", lTalonMaster.getOutputVoltage());
-		SmartDashboard.putNumber("Left Master Current: ", lTalonMaster.getOutputCurrent());
+//		SmartDashboard.putNumber("Left Master Voltage: ", lTalonMaster.getOutputVoltage());
+//		SmartDashboard.putNumber("Left Master Current: ", lTalonMaster.getOutputCurrent());
 		SmartDashboard.putNumber("Left Master Speed: ", lTalonMaster.getSpeed());
-		SmartDashboard.putNumber("Left Slave Voltage: ", lTalonSlave.getOutputVoltage());
-		SmartDashboard.putNumber("Left Slave Current: ", lTalonSlave.getOutputCurrent());
+//		SmartDashboard.putNumber("Left Slave Voltage: ", lTalonSlave.getOutputVoltage());
+//		SmartDashboard.putNumber("Left Slave Current: ", lTalonSlave.getOutputCurrent());
 
 		SmartDashboard.putNumber("Right Encoder: ", rTalonMaster.getPosition());
-		SmartDashboard.putNumber("Right Master Voltage: ", rTalonMaster.getOutputVoltage());
-		SmartDashboard.putNumber("Right Master Current: ", rTalonMaster.getOutputCurrent());
+//		SmartDashboard.putNumber("Right Master Voltage: ", rTalonMaster.getOutputVoltage());
+//		SmartDashboard.putNumber("Right Master Current: ", rTalonMaster.getOutputCurrent());
 		SmartDashboard.putNumber("Right Master Speed: ", -rTalonMaster.getSpeed());
-		SmartDashboard.putNumber("Right Slave Voltage: ", rTalonSlave.getOutputVoltage());
-		SmartDashboard.putNumber("Right Slave Current: ", rTalonSlave.getOutputCurrent());
+//		SmartDashboard.putNumber("Right Slave Voltage: ", rTalonSlave.getOutputVoltage());
+//		SmartDashboard.putNumber("Right Slave Current: ", rTalonSlave.getOutputCurrent());
 
 		SmartDashboard.putNumber("Lidar", Robot.lidar.getDistance());
 
