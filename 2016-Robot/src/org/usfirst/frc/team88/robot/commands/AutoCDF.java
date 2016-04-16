@@ -11,9 +11,9 @@ public class AutoCDF extends CommandGroup {
     
     public  AutoCDF() {
     	
+    	addSequential(new IntakeIn());
     	addSequential(new ArmsZero());
     	addSequential(new AutoForwards(0, 11, 30, false));
-    	addSequential(new ArmsToPosition(Robot.arms.POS_CDF));
     	addSequential(new ArmsToPosition(Robot.arms.POS_FORWARD_LIMIT));
     	addSequential(new AutoForwards(3000, 0, true));
     	addParallel(new AutoDelay(900));

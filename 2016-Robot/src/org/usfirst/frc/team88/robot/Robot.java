@@ -13,6 +13,7 @@ import org.usfirst.frc.team88.robot.commands.AutoForwards;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarLowGoal;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoPortcullis;
 import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
 import org.usfirst.frc.team88.robot.commands.DrivePark2;
 import org.usfirst.frc.team88.robot.commands.IntakeIn;
@@ -24,6 +25,7 @@ import org.usfirst.frc.team88.robot.commands.AutoBackAndForth;
 import org.usfirst.frc.team88.robot.commands.AutoBackwards;
 import org.usfirst.frc.team88.robot.commands.AutoBackwardsBasedOnRoll;
 import org.usfirst.frc.team88.robot.commands.AutoBackwardsToDistance;
+import org.usfirst.frc.team88.robot.commands.AutoCDF;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -84,6 +86,7 @@ public class Robot extends IterativeRobot {
 		autoSelector.addObject("Low Bar No Shoot", new AutoLowBarNoShoot());
 		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
 		autoSelector.addObject("Low Bar Low Goal", new AutoLowBarLowGoal());
+		autoSelector.addObject("Portcullis No Shoot", new AutoPortcullis());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
@@ -91,6 +94,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Low Bar No Shoot", new AutoLowBarNoShoot());
 		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
 		SmartDashboard.putData("Low Bar Low Goal", new AutoLowBarLowGoal());
+		SmartDashboard.putData("Portcullis No Shoot", new AutoPortcullis());
+		SmartDashboard.putData("CDF No Shoot", new AutoCDF());
 		
 		// Buttons for testing component commands
 		SmartDashboard.putData("ArmsZero", new ArmsZero());
@@ -105,6 +110,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Drive LBLG_1", new AutoBackwardsToDistance("Dist_LBLG_1", 4000));
 		SmartDashboard.putData("Angle LBLG", new AutoRotateToAngle("Angle_LBLG", 120.0f));
 		SmartDashboard.putData("Drive LBLG_2", new AutoForwards("Dist_LBLG_2", 3000));
+		
 	}
 
 	/**

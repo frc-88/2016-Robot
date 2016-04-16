@@ -28,6 +28,8 @@ public class Drive extends Subsystem implements PIDOutput {
 	
 	private final CANTalon lTalonMaster, lTalonSlave, rTalonMaster, rTalonSlave;
 	private CANTalon.TalonControlMode controlMode;
+	private double priorLeftInput, priorRightInput;
+	
 	public AHRS navX;
 	public PIDController turnController;
 
@@ -49,7 +51,7 @@ public class Drive extends Subsystem implements PIDOutput {
 	private final static int POSITION_PROFILE = 1;
 
 	private final static double ROTATE_P = 0.01;
-	private final static double ROTATE_I = 0.0;
+	private final static double ROTATE_I = 0.0002;
 	private final static double ROTATE_D = 0.0;
 	private final static double ROTATE_F = 0.0;
 	private final static double ROTATE_TOLERANCE = 4.0f;
@@ -125,6 +127,19 @@ public class Drive extends Subsystem implements PIDOutput {
 		SmartDashboard.putNumber("Left Input: ", left);
 		SmartDashboard.putNumber("Right Input: ", right);
 
+// the below code does not work...think about initial states
+		//		if (left - priorLeftInput > 0.1) {
+//			left = priorLeftInput + 0.1;
+//		} else if (left - priorLeftInput < 0.1) {
+//			left = priorLeftInput - 0.1;
+//		}
+//
+//		if (right - priorRightInput > 0.1) {
+//			right = priorRightInput + 0.1;
+//		} else if (right - priorRightInput < 0.1) {
+//			right = priorRightInput - 0.1;
+//		}
+		
 		switch (controlMode) {
 		case Speed:
 			lTalonMaster.set(left * MAX_SPEED);
@@ -142,6 +157,9 @@ public class Drive extends Subsystem implements PIDOutput {
 			break;
 		}
 
+//		priorLeftInput = left;
+//		priorRightInput = right;
+		
 		updateSmartDashboard();
 	}
 
@@ -183,7 +201,7 @@ public class Drive extends Subsystem implements PIDOutput {
 	/* based upon navX-MXP yaw angle input and PID Coefficients. */
 	public void pidWrite(double output) {
 		double max = 0.4;
-		double min = 0.1;
+		double min = 0.075;
 		
 		if (output > max) {
 			output = max;
@@ -197,7 +215,7 @@ public class Drive extends Subsystem implements PIDOutput {
 			output = 0 - max;
 		}
 		
-		set(output, -output);
+		set(-output, output);
 	}
 
 	public void updateSmartDashboard() {
@@ -217,8 +235,6 @@ public class Drive extends Subsystem implements PIDOutput {
 
 		SmartDashboard.putNumber("Lidar", Robot.lidar.getDistance());
 
-		SmartDashboard.putNumber("On Target", turnController.onTarget()?1:0);
-		
 		navXData();
 	}
 

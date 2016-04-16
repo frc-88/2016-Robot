@@ -7,13 +7,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoPortCullis extends CommandGroup {
+public class AutoPortcullis extends CommandGroup {
     
-    public  AutoPortCullis() {
+    public  AutoPortcullis() {
 
+    	addSequential(new IntakeIn());
     	addSequential(new ArmsZero());
+    	addSequential(new IntakeStop());
     	addSequential(new ArmsToPosition(Robot.arms.POS_FORWARD_LIMIT));
-    	addSequential(new AutoForwards(3000, false));
+    	addSequential(new AutoForwards(4000, true));
     	addSequential(new ArmsZero());
     }
 }

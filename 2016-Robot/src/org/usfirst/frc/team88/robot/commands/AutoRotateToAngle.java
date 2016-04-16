@@ -4,6 +4,7 @@ import org.usfirst.frc.team88.robot.Robot;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -42,6 +43,9 @@ public class AutoRotateToAngle extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		SmartDashboard.putNumber("Rot Error", Robot.drive.turnController.getError());
+		SmartDashboard.putNumber("Rot On Target", Robot.drive.turnController.onTarget()?1:0);
+
 		return Robot.drive.turnController.onTarget();
 	}
 

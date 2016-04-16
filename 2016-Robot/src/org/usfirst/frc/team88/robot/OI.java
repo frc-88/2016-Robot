@@ -90,10 +90,10 @@ public class OI {
 		operatorButtonX.whenPressed(new ShooterPrepare());
 		operatorButtonY.whenPressed(new ShooterFire());
 		operatorButtonStart.whenPressed(new ShooterStop());
-		operatorButtonBack.whenPressed(new ShooterStop());
+//		operatorButtonBack.whenPressed(new ShooterStop());
 		operatorButtonLeftBumper.whenPressed(new ArmsUpOnePosition());
 		operatorButtonRightBumper.whenPressed(new ArmsDownOnePosition());
-		//operatorButtonBack.whenPressed(new AutoCDF());
+		operatorButtonBack.whenPressed(new AutoCDF());
 	}
 
 	// driver
