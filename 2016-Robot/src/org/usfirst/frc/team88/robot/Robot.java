@@ -12,7 +12,9 @@ import org.usfirst.frc.team88.robot.commands.AutoForward3MetersFast;
 import org.usfirst.frc.team88.robot.commands.AutoForwards;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarLowGoal;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoLowBarShuttle;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoPassiveShuttle;
 import org.usfirst.frc.team88.robot.commands.AutoPortcullis;
 import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
 import org.usfirst.frc.team88.robot.commands.DrivePark2;
@@ -87,6 +89,8 @@ public class Robot extends IterativeRobot {
 		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
 		autoSelector.addObject("Low Bar Low Goal", new AutoLowBarLowGoal());
 		autoSelector.addObject("Portcullis No Shoot", new AutoPortcullis());
+		autoSelector.addObject("Low Bar Shuttle", new AutoLowBarShuttle());
+		autoSelector.addObject("Passive Shuttle", new AutoPassiveShuttle());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
@@ -111,6 +115,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Angle LBLG", new AutoRotateToAngle("Angle_LBLG", 120.0f));
 		SmartDashboard.putData("Drive LBLG_2", new AutoForwards("Dist_LBLG_2", 3000));
 		
+		SmartDashboard.putData("Drive LBS_2", new AutoBackwards("Dist_LBS_2",3000));
+		SmartDashboard.putData("Angle LBS", new AutoRotateToAngle(-150));
+		
+		SmartDashboard.putData("Passive Shuttle", new AutoPassiveShuttle());
+
 	}
 
 	/**
