@@ -13,6 +13,7 @@ public class Spotlight extends Subsystem {
 
 	public Spotlight() {
 		lightswitch = new Relay(RobotMap.spotlightPWM, Relay.Direction.kForward);
+		lightswitch.set(Relay.Value.kOff);
 	}
 
 	public void toggle() {
