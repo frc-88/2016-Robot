@@ -44,4 +44,8 @@ public class RobotMap {
 
 	// Climber
 	public static int climberMotor = 10;
+	
+	// Spotlight
+    public static final int spotlightPWM = 0;
+
 }

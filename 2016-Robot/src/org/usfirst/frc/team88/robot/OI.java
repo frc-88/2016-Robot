@@ -14,6 +14,7 @@ import org.usfirst.frc.team88.robot.commands.IntakeOut;
 import org.usfirst.frc.team88.robot.commands.IntakeStop;
 import org.usfirst.frc.team88.robot.commands.ShooterPrepare;
 import org.usfirst.frc.team88.robot.commands.ShooterStop;
+import org.usfirst.frc.team88.robot.commands.SpotlightToggle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.RumbleType;
@@ -79,7 +80,7 @@ public class OI {
 	public OI() {
 //		driverButtonLeftBumper.whenPressed(new DrivePark());
 		driverButtonRightBumper.whenPressed(new DriveWithController());
-//		driverButtonA.whenPressed(new DriveClosedLoop());
+		driverButtonA.whenPressed(new SpotlightToggle());
 //		driverButtonB.whenPressed(new DriveOpenLoop());
 //		driverButtonX.whenPressed(new AutoBack3Meters());
 
