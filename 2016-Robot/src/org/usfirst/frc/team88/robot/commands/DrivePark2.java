@@ -7,36 +7,39 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoBack3Meters extends Command {
-	private final static double DISTANCE = 6000.0;
+public class DrivePark2 extends Command {
+	private double targetDistance;
 	
-    public AutoBack3Meters() {
+    public DrivePark2() {
     	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.resetPosition();
-    	Robot.drive.set(0.27, 0.2);
+    	targetDistance = Robot.lidar.getDistance();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Robot.lidar.getDistance() > targetDistance){
+    		Robot.drive.set(0.2, 0.2);
+    	}
+    	else{
+    		Robot.drive.set(0.0, 0.0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(Robot.drive.getLeftPosition()) > DISTANCE || Math.abs(Robot.drive.getRightPosition()) > DISTANCE);
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drive.set(0.0, 0.0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drive.set(0.0, 0.0);
     }
 }

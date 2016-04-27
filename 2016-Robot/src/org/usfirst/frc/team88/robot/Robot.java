@@ -9,14 +9,25 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team88.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team88.robot.commands.AutoForward3MetersFast;
+import org.usfirst.frc.team88.robot.commands.AutoForwards;
+import org.usfirst.frc.team88.robot.commands.AutoLowBarLowGoal;
 import org.usfirst.frc.team88.robot.commands.AutoLowBarNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoLowBarShuttle;
 import org.usfirst.frc.team88.robot.commands.AutoPassiveNoShoot;
+import org.usfirst.frc.team88.robot.commands.AutoPassiveShuttle;
+import org.usfirst.frc.team88.robot.commands.AutoPortcullis;
 import org.usfirst.frc.team88.robot.commands.AutoRotateToAngle;
+import org.usfirst.frc.team88.robot.commands.DrivePark2;
+import org.usfirst.frc.team88.robot.commands.IntakeIn;
+import org.usfirst.frc.team88.robot.commands.IntakeOut;
+import org.usfirst.frc.team88.robot.commands.IntakeStop;
 import org.usfirst.frc.team88.robot.commands.ArmsDown;
 import org.usfirst.frc.team88.robot.commands.ArmsZero;
-import org.usfirst.frc.team88.robot.commands.AutoBack3Meters;
-import org.usfirst.frc.team88.robot.commands.AutoBack3MetersFast;
 import org.usfirst.frc.team88.robot.commands.AutoBackAndForth;
+import org.usfirst.frc.team88.robot.commands.AutoBackwards;
+import org.usfirst.frc.team88.robot.commands.AutoBackwardsBasedOnRoll;
+import org.usfirst.frc.team88.robot.commands.AutoBackwardsToDistance;
+import org.usfirst.frc.team88.robot.commands.AutoCDF;
 import org.usfirst.frc.team88.robot.subsystems.Arms;
 import org.usfirst.frc.team88.robot.subsystems.Climber;
 import org.usfirst.frc.team88.robot.subsystems.Drive;
@@ -74,23 +85,41 @@ public class Robot extends IterativeRobot {
 		// set up SendableChooser to select autonomous mode
 		autoSelector = new SendableChooser();
 		autoSelector.addDefault("Do Nothing", new AutoDoNothing());
-		autoSelector.addObject("Backwards 3m", new AutoBack3Meters());
 		autoSelector.addObject("Low Bar No Shoot", new AutoLowBarNoShoot());
 		autoSelector.addObject("Passive No Shoot", new AutoPassiveNoShoot());
-		autoSelector.addObject("Back and Forward", new AutoBackAndForth());
+		autoSelector.addObject("Low Bar Low Goal", new AutoLowBarLowGoal());
+		autoSelector.addObject("Portcullis No Shoot", new AutoPortcullis());
+		autoSelector.addObject("Low Bar Shuttle", new AutoLowBarShuttle());
+		autoSelector.addObject("Passive Shuttle", new AutoPassiveShuttle());
 		SmartDashboard.putData("Auto Mode", autoSelector);
 
 		// Buttons for testing autonomous commands
 		SmartDashboard.putData("Do Nothing", new AutoDoNothing());
-		SmartDashboard.putData("Backwards 3m", new AutoBack3Meters());
-		SmartDashboard.putData("FAST Backwards 3m", new AutoBack3MetersFast());
-		SmartDashboard.putData("FAST Forawrds 3m", new AutoForward3MetersFast());
-		SmartDashboard.putData("FAST Backward and Forwards 3m", new AutoBackAndForth());
 		SmartDashboard.putData("Low Bar No Shoot", new AutoLowBarNoShoot());
 		SmartDashboard.putData("Passive No Shoot", new AutoPassiveNoShoot());
+		SmartDashboard.putData("Low Bar Low Goal", new AutoLowBarLowGoal());
+		SmartDashboard.putData("Portcullis No Shoot", new AutoPortcullis());
+		SmartDashboard.putData("CDF No Shoot", new AutoCDF());
+		
+		// Buttons for testing component commands
 		SmartDashboard.putData("ArmsZero", new ArmsZero());
 		SmartDashboard.putData("ArmsDown", new ArmsDown());
-		SmartDashboard.putData("Rotate Left 90", new AutoRotateToAngle(-90));
+
+		SmartDashboard.putData("Intake In", new IntakeIn());
+		SmartDashboard.putData("Intake Out", new IntakeOut());
+		SmartDashboard.putData("Intake Stop", new IntakeStop());
+		
+		SmartDashboard.putData("Drive LBNS", new AutoBackwards("Dist_LBNS", 6000));
+		SmartDashboard.putData("Drive PNS", new AutoBackwards("Dist_PNS", 9000, true));
+		SmartDashboard.putData("Drive LBLG_1", new AutoBackwardsToDistance("Dist_LBLG_1", 4000));
+		SmartDashboard.putData("Angle LBLG", new AutoRotateToAngle("Angle_LBLG", 120.0f));
+		SmartDashboard.putData("Drive LBLG_2", new AutoForwards("Dist_LBLG_2", 3000));
+		
+		SmartDashboard.putData("Drive LBS_2", new AutoBackwards("Dist_LBS_2",3000));
+		SmartDashboard.putData("Angle LBS", new AutoRotateToAngle(-150));
+		
+		SmartDashboard.putData("Passive Shuttle", new AutoPassiveShuttle());
+
 	}
 
 	/**

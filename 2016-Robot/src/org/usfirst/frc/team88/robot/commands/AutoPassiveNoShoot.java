@@ -11,6 +11,6 @@ public class AutoPassiveNoShoot extends CommandGroup {
     	addParallel(new IntakeIn());
     	addSequential(new ArmsZero());
     	addSequential(new IntakeStop());
-    	addSequential(new AutoBack3MetersFast());
+    	addSequential(new AutoBackwards("Dist_PNS",6500,true));
     }
 }

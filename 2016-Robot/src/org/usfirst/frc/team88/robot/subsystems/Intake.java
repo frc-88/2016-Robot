@@ -28,6 +28,7 @@ public class Intake extends Subsystem {
 
 //	private final static double SHOOTER_SPEED = 0.65;
 	private static double SHOOTER_SPEED = 1200;
+	private static double SHOOTER_TARGET_SPEED = 2380;
 	// shooter speed is in position change / 10ms
 	// shooter encoder is 128 count, so 512 ticks per rotation
 	// so 512 would be 1 rotation per 10ms, or 100 rotations per second
@@ -39,10 +40,13 @@ public class Intake extends Subsystem {
 	public final static double INTAKE_IN = 0.9;
 	public final static double INTAKE_OUT = -1.0;
 	
+	private static double shooterLights;
+	
 	private final CANTalon intakeTalon;
 	private final CANTalon shooterTalon;
 
 	private final AnalogInput boulderHolder;
+	private boolean shooterRunning;
 	
 	public Intake (){
 		intakeTalon = new CANTalon(RobotMap.intakeMotor);
@@ -67,16 +71,23 @@ public class Intake extends Subsystem {
 	public void startShooter() {
 		changeSpeed();
 		shooterTalon.set(SHOOTER_SPEED);
-		
+		shooterRunning = true;
+		printShooter();
 	}
 
 	public void stopShooter() {
 		shooterTalon.set(0);
+		shooterRunning = false;
+		printShooter();
+	}
+	
+	public void printShooter(){
+		SmartDashboard.putBoolean("Shooter Running", shooterRunning);
 	}
 	
 	public boolean isShooterReady(){	
-		return ( ( ( SHOOTER_SPEED - THRESHOLD_SPEED ) <= ( shooterTalon.getSpeed() * 10 ) ) && 
-				 ( ( SHOOTER_SPEED + THRESHOLD_SPEED ) >= ( shooterTalon.getSpeed() * 10 ) ) );
+		return ( ( ( SHOOTER_TARGET_SPEED - THRESHOLD_SPEED ) <= ( shooterTalon.getSpeed()) ) && 
+				 ( ( SHOOTER_TARGET_SPEED + THRESHOLD_SPEED ) >= ( shooterTalon.getSpeed()) ) );
 	}
 
 	public double getShooterSpeed() {
@@ -108,7 +119,12 @@ public class Intake extends Subsystem {
     
     public void changeSpeed() {
     	prefs = Preferences.getInstance();
-    	SHOOTER_SPEED = prefs.getDouble("shooterSpeed", 1200);
+    	SHOOTER_SPEED = prefs.getDouble("shooterSpeed", 1050);
+    }
+    
+    public double getShooterAnalog(){
+    	shooterLights = shooterTalon.getSpeed() / SHOOTER_SPEED;
+    	return shooterLights;
     }
 }
 
