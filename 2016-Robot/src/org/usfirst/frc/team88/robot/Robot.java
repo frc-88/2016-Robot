@@ -34,6 +34,7 @@ import org.usfirst.frc.team88.robot.subsystems.Drive;
 import org.usfirst.frc.team88.robot.subsystems.HookDeliverySystem;
 import org.usfirst.frc.team88.robot.subsystems.Intake;
 import org.usfirst.frc.team88.robot.subsystems.Lights;
+import org.usfirst.frc.team88.robot.subsystems.Spotlight;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
 	public static Lights lights;
 	public static CameraServer server;
 	public static Lidar lidar;
+	public static Spotlight spotlight;
 
 	Command autonomousCommand;
 	SendableChooser autoSelector;
@@ -72,6 +74,7 @@ public class Robot extends IterativeRobot {
 		//HDS = new HookDeliverySystem();
 		lights = new Lights();
 		lidar = new Lidar(I2C.Port.kOnboard);
+		spotlight = new Spotlight();
 		
 		oi = new OI();
 
