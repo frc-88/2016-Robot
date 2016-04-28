@@ -100,8 +100,11 @@ public class Intake extends Subsystem {
 	}
 	
 	public boolean isShooterReady(){	
-		return ( ( ( SHOOTER_TARGET_SPEED - THRESHOLD_SPEED ) <= ( shooterTalon.getSpeed()) ) && 
-				 ( ( SHOOTER_TARGET_SPEED + THRESHOLD_SPEED ) >= ( shooterTalon.getSpeed()) ) );
+		double targetVoltage = prefs.getDouble("shooterRunVolts", 7.0) * 0.9;
+		double targetCurrent = prefs.getDouble("shooterTargetCurrent", 1.0);
+		
+		return ( (shooterTalon.getOutputVoltage() > targetVoltage) && 
+				 (shooterTalon.getOutputCurrent() < targetCurrent) );
 	}
 
 	public double getShooterSpeed() {
