@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ShooterPrepareOpen extends Command {
 	private static final Preferences prefs = Preferences.getInstance();
-	private double speed, delay, count;
+	private double speed, delay, count, ramp, start;
 	
     public ShooterPrepareOpen() {
     	requires(Robot.intake);
@@ -21,7 +21,10 @@ public class ShooterPrepareOpen extends Command {
     	count = 0.0;
     	delay = prefs.getDouble("shooterStartDelay", 1.0) * 50.0;
     	speed = prefs.getDouble("shooterRunVolts", 7.0);
-    	Robot.intake.startShooterOpen(prefs.getDouble("shooterStartVolts", 10.0));
+    	ramp = prefs.getDouble("shooterRampRate", 2.0);
+    	start = prefs.getDouble("shooterStartVolts", 10.0);
+
+    	Robot.intake.startShooterVoltage(start, start);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -31,16 +34,16 @@ public class ShooterPrepareOpen extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return (count++ > delay);
-    }
+        }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.startShooterVoltage(speed, 2.0);
+    	Robot.intake.startShooterVoltage(speed, ramp);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.startShooterVoltage(speed, 2.0);
+    	Robot.intake.startShooterVoltage(speed, ramp);
     }
 }
