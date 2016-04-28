@@ -70,11 +70,18 @@ public class Intake extends Subsystem {
 	
 	public void startShooter() {
 		changeSpeed();
+		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shooterTalon.set(SHOOTER_SPEED);
 		shooterRunning = true;
 		printShooter();
 	}
 
+	public void startShooterOpen(double voltage) {
+		shooterTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterTalon.set(voltage);
+		shooterRunning = true;		
+	}
+	
 	public void stopShooter() {
 		shooterTalon.set(0);
 		shooterRunning = false;
