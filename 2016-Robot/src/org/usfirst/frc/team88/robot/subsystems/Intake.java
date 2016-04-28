@@ -14,9 +14,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *  Happy boulder in its nest
  *  What's that noise? Up and away!
  */
+
 public class Intake extends Subsystem {
 	
-	Preferences prefs;
+	private static final Preferences prefs = Preferences.getInstance();
+	
 	
 	private final static double SHOOTER_P = 0.5;
 	private final static double SHOOTER_I = 0.0; 
@@ -137,7 +139,7 @@ public class Intake extends Subsystem {
     }
     
     public void changeSpeed() {
-    	prefs = Preferences.getInstance();
+
     	SHOOTER_SPEED = prefs.getDouble("shooterSpeed", 1050);
     }
     
