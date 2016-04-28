@@ -13,6 +13,7 @@ import org.usfirst.frc.team88.robot.commands.IntakeIn;
 import org.usfirst.frc.team88.robot.commands.IntakeOut;
 import org.usfirst.frc.team88.robot.commands.IntakeStop;
 import org.usfirst.frc.team88.robot.commands.ShooterPrepare;
+import org.usfirst.frc.team88.robot.commands.ShooterPrepareOpen;
 import org.usfirst.frc.team88.robot.commands.ShooterStop;
 import org.usfirst.frc.team88.robot.commands.SpotlightToggle;
 
@@ -88,7 +89,7 @@ public class OI {
 		operatorButtonA.whenReleased(new IntakeStop());
 		operatorButtonB.whenPressed(new IntakeOut());
 		operatorButtonB.whenReleased(new IntakeStop());
-		operatorButtonX.whenPressed(new ShooterPrepare());
+		operatorButtonX.whenPressed(new ShooterPrepareOpen());
 		operatorButtonY.whenPressed(new ShooterFire());
 		operatorButtonStart.whenPressed(new ShooterStop());
 //		operatorButtonBack.whenPressed(new ShooterStop());
