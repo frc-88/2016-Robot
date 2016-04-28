@@ -23,8 +23,10 @@ public class ShooterPrepareOpen extends Command {
     	speed = prefs.getDouble("shooterRunVolts", 7.0);
     	ramp = prefs.getDouble("shooterRampRate", 2.0);
     	start = prefs.getDouble("shooterStartVolts", 10.0);
-
+    	
+    	if(prefs.getBoolean("ShooterWarmUp", false)){
     	Robot.intake.startShooterVoltage(start, start);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
