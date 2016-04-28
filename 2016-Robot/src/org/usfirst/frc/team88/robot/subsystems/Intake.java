@@ -82,6 +82,13 @@ public class Intake extends Subsystem {
 		shooterRunning = true;		
 	}
 	
+	public void startShooterVoltage(double runv, double ramp){
+		shooterTalon.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		shooterTalon.set(runv);
+		shooterTalon.setVoltageCompensationRampRate(ramp);
+		shooterRunning = true;
+	}
+	
 	public void stopShooter() {
 		shooterTalon.set(0);
 		shooterRunning = false;
@@ -100,6 +107,8 @@ public class Intake extends Subsystem {
 	public double getShooterSpeed() {
 		SmartDashboard.putNumber("Shooter speedx: ", shooterTalon.getSpeed());
 		SmartDashboard.putNumber("Shooter position: ", shooterTalon.getEncPosition());
+		SmartDashboard.putNumber("Shooter Voltage: ", shooterTalon.getOutputVoltage());
+		SmartDashboard.putNumber("Shooter Current: ", shooterTalon.getOutputCurrent());
 		
 		return shooterTalon.getSpeed();
 	}
